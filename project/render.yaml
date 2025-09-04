@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: project
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate
+    startCommand: daphne -b 0.0.0.0 -p 10000 project.asgi:application
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: project-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          name: project-redis
+          type: redis

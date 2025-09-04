@@ -1,0 +1,36 @@
+<!-- C:\Users\Na\Desktop\firaol\project\base\templates\base\messages.html -->
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'base/css/messages.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="messages-container">
+    <h2>{% trans "Messages Received" %}</h2>
+    
+    {% if messages %}
+        <div class="message-list">
+            {% for msg in messages %}
+            <div class="message-card">
+                <div class="message-header">
+                    <span class="phone">{{ msg.phone }}</span>
+                    <span class="date">{{ msg.created_at|date:"M d, Y H:i" }}</span>
+                </div>
+                <div class="message-body">
+                    {{ msg.message }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>{% trans "No messages yet." %}</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'base/js/messages.js' %}" defer></script>
+{% endblock %}

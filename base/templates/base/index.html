@@ -1,0 +1,201 @@
+<!-- base/templates/base/index.html -->
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'base/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<body> 
+    <section class="hero-slider">
+        <div class="slider-container">
+            <div class="slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1486401899868-0e435ed85128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                <div class="container">
+                    <div class="slide-content">
+                        <h1>{% trans "Find Your Dream Home Today" %}</h1>
+                        <p>{% trans "Thousands of properties waiting for you" %}</p>
+                        <a href="{% url 'houses:house_list' %}" class="btn-primary">{% trans "House" %}</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://www.globaltimes.cn/Portals/0/attachment/2024/2024-09-12/301bdce3-9b85-4ebc-b0c1-cf00b90308c4.jpeg');">
+                <div class="container">
+                    <div class="slide-content">
+                        <h1>{% trans "Ethiopian Poultry Farm" %}</h1>
+                        <p>{% trans "Eggs, Chickens, poultry Equipment and tools for sell" %}</p>
+                        <a href="{% url 'poultryitems:index' %}" class="btn-primary">{% trans "poultry" %}</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://www.mekina.net/_next/image?url=https%3A%2F%2Fmekina.s3.eu-west-1.amazonaws.com%2Fcars%2Fprivate%2F8e8fb1a9-3b1f-4073-b88e-fb6124257145%2Ff3d68f30-6596-46fb-aca4-4b9aa2c8b9e4%2F28_3_4a7ffd4d_d60a_4299_a316_a171e7bb74a8_8b873b4047.jpeg&w=3840&q=75');">
+                <div class="container">
+                    <div class="slide-content">
+                        <h1>{% trans "Latest Car Models" %}</h1>
+                        <p>{% trans "New arrivals with amazing deals" %}</p>
+                        <a href="{% url 'vehicles:vehicle_list' %}" class="btn-primary">{% trans "car" %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1526&q=80');">
+                <div class="container">
+                    <div class="slide-content">
+                        <h1>{% trans "Summer Tech Sale" %}</h1>
+                        <p>{% trans "Up to 40% off on electronics" %}</p>
+                        <a href="{% url 'electronics:product_list' %}" class="btn-primary">{% trans "Electronics" %}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="slider-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="category-grid">
+        <div class="container">
+            <h2 class="section-title">{% trans "Shop by Category" %}</h2>
+            <div class="grid-container">
+                <a href="{% url 'vehicles:vehicle_list' %}" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>{% trans "Cars" %}</h3>
+                    <p>{% trans "5,000+ listings" %}</p>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>{% trans "Houses" %}</h3>
+                    <p>{% trans "2,500+ properties" %}</p>
+                </a>
+                <a href="{% url 'vehicles:vehicle_list' %}" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>{% trans "Electronics" %}</h3>
+                    <p>{% trans "10,000+ products" %}</p>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>{% trans "Clothing" %}</h3>
+                    <p>{% trans "15,000+ items" %}</p>
+                </a>
+                <a href="{% url 'vehicles:vehicle_list' %}" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>{% trans "Books" %}</h3>
+                    <p>{% trans "8,000+ titles" %}</p>
+                </a>
+                <a href="#" class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>{% trans "Kids Toys" %}</h3>
+                    <p>{% trans "3,000+ products" %}</p>
+                </a>
+            </div>
+        </div>
+    </section>
+<section class="featured-products">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">{% trans "Featured Products" %}</h2>
+        </div>
+        
+        <div class="products-container">
+            <div class="product-grid">
+                {% for product in all_featured %}
+                <div class="product-card">
+                    {% if product.product_type == 'house' %}
+                        {% if product.images.all %}
+                            <img src="{{ product.images.first.image.url }}" alt="{{ product.title }}">
+                        {% else %}
+                            <img src="{% static 'base/images/default-house.jpg' %}" alt="{{ product.title }}">
+                        {% endif %}
+                        <h3>{{ product.title }}</h3>
+                        <p class="price">${{ product.price }}</p>
+                        <p class="location">{{ product.city }}, {{ product.state }}</p>
+                        <a href="{% url 'houses:house_detail' product.id %}" class="btn-view">{% trans "View Details" %}</a>
+                    
+                    {% elif product.product_type == 'vehicle' %}
+                        {% if product.images.all %}
+                            <img src="{{ product.images.first.image.url }}" alt="{{ product.make }} {{ product.model }}">
+                        {% else %}
+                            <img src="{% static 'base/images/default-vehicle.jpg' %}" alt="{{ product.make }} {{ product.model }}">
+                        {% endif %}
+                        <h3>{{ product.year }} {{ product.make }} {{ product.model }}</h3>
+                        <p class="price">${{ product.price }}</p>
+                        <a href="{% url 'vehicles:vehicle_detail' product.id %}" class="btn-view">{% trans "View Details" %}</a>
+                    
+                    {% elif product.product_type == 'electronics' %}
+                        {% if product.images.all %}
+                            <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                            <img src="{% static 'base/images/default-electronics.jpg' %}" alt="{{ product.name }}">
+                        {% endif %}
+                        <h3>{{ product.name }}</h3>
+                        <p class="price">${{ product.price }}</p>
+                        <a href="{% url 'electronics:product_detail' product.id %}" class="btn-view">{% trans "View Details" %}</a>
+                    
+                    {% elif product.product_type == 'clothing' %}
+                        {% if product.images.all %}
+                            <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                            <img src="{% static 'base/images/default-clothing.jpg' %}" alt="{{ product.name }}">
+                        {% endif %}
+                        <h3>{{ product.name }}</h3>
+                        <p class="price">${{ product.current_price }}</p>
+                        {% if product.is_on_sale %}
+                        <p class="sale-price">{% trans "Was" %} ${{ product.price }}</p>
+                        {% endif %}
+                        <a href="{% url 'clothings:clothing_detail' product.id %}" class="btn-view">{% trans "View Details" %}</a>
+                    
+                    {% elif product.product_type == 'poultry' %}
+                        {% if product.main_image %}
+                            <img src="{{ product.main_image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                            <img src="{% static 'base/images/default-poultry.jpg' %}" alt="{{ product.name }}">
+                        {% endif %}
+                        <h3>{{ product.name }}</h3>
+                        <p class="price">${{ product.price }}</p>
+                        <a href="{% url 'poultryitems:item_detail' product.id %}" class="btn-view">{% trans "View Details" %}</a>
+                    {% endif %}
+                </div>
+                {% empty %}
+                <p class="no-products">{% trans "No featured products available." %}</p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="category-links">
+            <h3>{% trans "Browse by Category" %}</h3>
+            <div class="category-buttons">
+                <a href="{% url 'houses:house_list' %}" class="category-link">{% trans "Houses" %}</a>
+                <a href="{% url 'vehicles:vehicle_list' %}" class="category-link">{% trans "Vehicles" %}</a>
+                <a href="{% url 'electronics:product_list' %}" class="category-link">{% trans "Electronics" %}</a>
+                <a href="{% url 'clothings:clothing_list' %}" class="category-link">{% trans "Clothing" %}</a>
+                <a href="{% url 'poultryitems:item_list' %}" class="category-link">{% trans "Poultry" %}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'base/js/index.js' %}"></script>
+{% endblock %}
