@@ -1,0 +1,32 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'users/css/seller_profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="seller-profile-container">
+    <div class="seller-profile-card">
+        <img class="seller-profile-picture"
+             src="{{ seller.profile.profile_picture.url }}"
+             alt="{{ seller.username }}'s profile picture">
+        <h2 class="seller-username">{{ seller.username }}</h2>
+        <p class="seller-phone"><strong>Phone:</strong> {{ seller.phone_number }}</p>
+        {% if seller.profile.username %}
+            <p class="seller-name"><strong>Name:</strong> {{ seller.profile.username }}</p>
+        {% endif %}
+        {% if seller.profile.bio %}
+            <p class="seller-bio"><strong>Bio:</strong> {{ seller.profile.bio }}</p>
+        {% endif %}
+        {% if seller.profile.location %}
+            <p class="seller-location"><strong>Location:</strong> {{ seller.profile.location }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'users/js/seller_profile.js' %}"></script>
+{% endblock %}

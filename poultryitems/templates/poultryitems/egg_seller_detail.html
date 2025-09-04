@@ -1,0 +1,14 @@
+<!-- In egg_seller_detail.html -->
+{% if user.is_staff %}
+<div class="staff-controls">
+    <h3>{% trans "Staff Controls" %}</h3>
+    <div class="seller-actions">
+        <a href="{% url 'poultryitems:edit_egg_seller' seller.pk %}" class="btn-edit">
+            <i class="fas fa-edit"></i> {% trans "Edit Seller" %}
+        </a>
+        <a href="{% url 'poultryitems:delete_egg_seller' seller.pk %}" class="btn-delete-page">
+            <i class="fas fa-trash"></i> {% trans "Delete Seller" %}
+        </a>
+    </div>
+</div>
+{% endif %}

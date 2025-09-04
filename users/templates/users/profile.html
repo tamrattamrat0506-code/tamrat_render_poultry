@@ -1,0 +1,34 @@
+{% extends 'base/base.html' %}
+
+{% load i18n %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <h2>{% trans "My Profile" %}</h2>
+
+    <div class="profile-header">
+        <img src="{{ user.profile.profile_picture.url }}" alt="{% trans 'Profile Picture' %}" class="profile-picture">
+        <h3>{{ user.profile.username|default:user.username }}</h3>
+    </div>
+
+    <div class="profile-details">
+        <p><strong>{% trans "Username:" %}</strong> {{ user.username }}</p>
+        <p><strong>{% trans "Phone Number:" %}</strong> {{ user.phone_number }}</p>
+        <p><strong>{% trans "Location:" %}</strong> {{ user.profile.location|default:"-" }}</p>
+        <p><strong>{% trans "Bio:" %}</strong> {{ user.profile.bio|default:"-" }}</p>
+    </div>
+
+    <div class="profile-actions">
+        <a href="{% url 'users:profile_update' %}" class="btn btn-primary">{% trans "Edit Profile" %}</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'users/js/profile.js' %}"></script>
+{% endblock %}

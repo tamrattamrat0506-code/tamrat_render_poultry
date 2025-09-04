@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load contact_extras %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'companies/css/alema.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="alema-bg">
+  <div class="alema-container">
+    <img src="https://alemafarms.com/images/logo.png" alt="Alemma Animal Feed Logo" class="alema-logo">
+    <h1 class="alema-title">{% trans "Alemma Animal Feed" %}</h1>
+    <h2>{% trans "Alemma Animal Feed Ethiopia" %}</h2>
+    <p>{% trans "Alemma Animal Feed is a leading animal feed manufacturer in Ethiopia, dedicated to providing high-quality feed products for livestock and poultry." %}</p>
+    <p>{% trans "For more information, you can visit their official website: " %}<a href="https://www.alemafeed.com" target="_blank" rel="noopener">{% trans "Alemma Animal Feed" %}</a></p>
+    <p>{% trans "Alemma Animal Feed is committed to improving the productivity and health of livestock in Ethiopia through the provision of nutritious and scientifically formulated animal feed." %}</p>
+
+    <div> {% trans "Head Office
++251114339966
++251114339502
++251955000011
++251955238585
++251955238606
++251955002230
+ Other Branches
+Kajima Branch - +251993466143
+Hawassa Branch - +251462127923
+CMC Branch- +251116688426
+CMC Branch- +251118332243
+Bishoftu Branch - +251114371400
+Kazanchis Branch - +251993466143" %}</div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'companies/js/alema.js' %}"></script>
+{% endblock %}

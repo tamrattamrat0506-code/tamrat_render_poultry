@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'users/css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Welcome," %} {{ request.user.username }}!</h1>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'users/js/dashboard.js' %}"></script>
+{% endblock %}

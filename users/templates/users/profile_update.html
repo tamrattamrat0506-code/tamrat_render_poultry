@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'users/css/profile_update.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="simple-profile_update">
+    <h2>{% trans "Update Profile" %}</h2>
+
+    {% if form.errors %}
+    <div class="error-message">
+        ⚠️ {% trans "Please correct the errors below." %}
+    </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" class="simple-form">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="form-row">
+            <label>{% trans "Phone Number:" %}</label>
+            <div class="readonly-field">{{ user.phone_number }}</div>
+            <small>{% trans "Contact support to change phone number" %}</small>
+        </div>
+
+        <div class="form-row">
+            <label>{{ form.profile_picture.label }}</label>
+            {% if form.instance.profile_picture %}
+                <div class="avatar-preview">
+                    <img src="{{ form.instance.profile_picture.url }}" alt="Current Profile" id="profile-picture-preview">
+                    <label class="change-photo-btn">
+                        {% trans "Change" %}
+                        {{ form.profile_picture }}
+                    </label>
+                </div>
+            {% else %}
+                <div class="avatar-preview">
+                    <img src="https://res.cloudinary.com/your-cloud-name/image/upload/v1612469403/kvtec0mqxawgxmhsaamd.jpg" 
+                         alt="Default Profile" 
+                         id="profile-picture-preview">
+                    <label class="upload-photo-btn">
+                        {% trans "Upload Photo" %}
+                        {{ form.profile_picture }}
+                    </label>
+                </div>
+            {% endif %}
+            {{ form.profile_picture.errors }}
+        </div>
+
+        <div class="form-row">
+            <label for="id_username">{{ form.username.label }}</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+
+        <div class="form-row">
+            <label for="id_bio">{{ form.bio.label }}</label>
+            {{ form.bio }}
+            {{ form.bio.errors }}
+        </div>
+
+        <div class="form-row">
+            <label for="id_location">{{ form.location.label }}</label>
+            {{ form.location }}
+            {{ form.location.errors }}
+        </div>
+
+        <button type="submit" class="save-btn">
+            {% trans "Save Changes" %}
+        </button>
+    </form>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'users/js/profile_update.js' %}"></script>
+{% endblock %}

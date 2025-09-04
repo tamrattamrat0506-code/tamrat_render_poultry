@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+  {% block css %}
+  <link rel="stylesheet" href="{% static 'poultryitems/css/poultry_trainings.css' %}">
+{% endblock %}
+
+{% block content %}
+<!--poultry trainings and workshops with trainee images and past trainings-->
+
+<div class="training-section">
+    <h2>{% trans "Upcoming Trainings" %}</h2>
+    <ul>
+        <li>
+            <div class="training-title">{% trans "Training Title 1" %}</div>
+            <div class="training-details">
+                <p>{% trans "Date: March 15, 2023" %}</p>
+                <p>{% trans "Location: City A" %}</p>
+            </div>
+        </li>
+        <li>
+            <div class="training-title">{% trans "Training Title 2" %}</div>
+            <div class="training-details">
+                <p>{% trans "Date: March 20, 2023" %}</p>
+                <p>{% trans "Location: City B" %}</p>
+            </div>
+        </li>
+        <li>
+            <div class="training-title">{% trans "Training Title 3" %}</div>
+            <div class="training-details">
+                <p>{% trans "Date: March 25, 2023" %}</p>
+                <p>{% trans "Location: City C" %}</p>
+            </div>
+        </li>
+    </ul>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'poultryitems/js/poultry_trainings.js' %}"></script>
+{% endblock %}

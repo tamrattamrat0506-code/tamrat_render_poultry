@@ -1,0 +1,498 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-08-11 01:29+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: am\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: .\companies\templates\companies\alema.html:13
+#: .\companies\templates\companies\alema.html:16
+msgid "Alemma Animal Feed"
+msgstr "አለማ የእንስሳት መኖ"
+
+#: .\companies\templates\companies\alema.html:14
+msgid "Alemma Animal Feed Ethiopia"
+msgstr "አለማ የእንስሳት መኖ ኢትዮጵያ"
+
+#: .\companies\templates\companies\alema.html:15
+msgid ""
+"Alemma Animal Feed is a leading animal feed manufacturer in Ethiopia, "
+"dedicated to providing high-quality feed products for livestock and poultry."
+msgstr ""
+"አለማ የእንስሳት መኖ በኢትዮጵያ ውስጥ የሚመራ የእንስሳት መኖ አምራች ኩባንያ ሲሆን፣ ለእንስሳት እና ለዶሮ ከፍተኛ "
+"ጥራት ያለው የመኖ ምርት ለመስጠት ተሰርቷል።"
+
+#: .\companies\templates\companies\alema.html:16
+msgid "For more information, you can visit their official website: "
+msgstr "ለተጨማሪ መረጃ ይፎታ ድረጃቸውን ይጎብኙ: "
+
+#: .\companies\templates\companies\alema.html:17
+msgid ""
+"Alemma Animal Feed is committed to improving the productivity and health of "
+"livestock in Ethiopia through the provision of nutritious and scientifically "
+"formulated animal feed."
+msgstr ""
+"አለማ የእንስሳት መኖ በሳይንሳዊ ሁኔታ የተዘጋጀ ምግብ በመስጠት በኢትዮጵያ ውስጥ ያሉ እንስሳት ምርታማነትና ጤና "
+"ለማሻሻል ቁርጠኛ ነው።"
+
+#: .\companies\templates\companies\ethiochicken.html:16
+msgid "EthioChicken Feed Manufacturers"
+msgstr "ኢትዮቺክክን የመኖ አምራች"
+
+#: .\companies\templates\companies\ethiochicken.html:17
+msgid "Empowering Ethiopian farmers through poultry excellence"
+msgstr "በዶሮ እርባታ ልምድ የኢትዮጵያ አርሶ አደሮችን ማብቃት"
+
+#: .\companies\templates\companies\ethiochicken.html:19
+msgid "Visit Our Website"
+msgstr "ድረ-ገጻችንን ይጎብኙ"
+
+#: .\companies\templates\companies\ethiochicken.html:27
+msgid "Price Update"
+msgstr "የዋጋ ማዘመኛ"
+
+#: .\companies\templates\companies\ethiochicken.html:32
+msgid "Chickens Type and Price Updates"
+msgstr "የዶሮ ዓይነቶች እና የዋጋ ማዘመኛ"
+
+#: .\companies\templates\companies\ethiochicken.html:33
+msgid ""
+"This section provides an overview of the different types of chickens "
+"available and their respective prices."
+msgstr "ይህ ክፍል ስለሚገኙ የተለያዩ የዶሮ ዓይነቶች እና የዋጋ መረጃ አጠቃላይ እይታ ይሰጣል።"
+
+#: .\companies\templates\companies\ethiochicken.html:38
+msgid "Chicken Type"
+msgstr "የዶሮ ዓይነት"
+
+#: .\companies\templates\companies\ethiochicken.html:39
+#: .\companies\templates\companies\ethiochicken.html:92
+msgid "Description"
+msgstr "መግለጫ"
+
+#: .\companies\templates\companies\ethiochicken.html:40
+#: .\companies\templates\companies\ethiochicken.html:93
+msgid "Price"
+msgstr "ዋጋ"
+
+#: .\companies\templates\companies\ethiochicken.html:45
+msgid "Day Old Chickens"
+msgstr "አንድ ቀን የዕድሜ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:46
+msgid "Newly born chicks"
+msgstr "አዲስ የተወለዱ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:47
+#: .\companies\templates\companies\ethiochicken.html:105
+msgid "ETB 20.00"
+msgstr "20.00 ብር"
+
+#: .\companies\templates\companies\ethiochicken.html:50
+msgid "Bovance Brown"
+msgstr "ቦቫንስ ብራውን"
+
+#: .\companies\templates\companies\ethiochicken.html:51
+msgid "Egg laying chickens"
+msgstr "እንቁላል የሚያፈሩ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:52
+#: .\companies\templates\companies\ethiochicken.html:110
+msgid "ETB 25.00"
+msgstr "25.00 ብር"
+
+#: .\companies\templates\companies\ethiochicken.html:55
+msgid "Sasso"
+msgstr "ሳሶ"
+
+#: .\companies\templates\companies\ethiochicken.html:56
+msgid "Dual purpose chickens"
+msgstr "ሁለት ዓላማ ያላቸው ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:57
+#: .\companies\templates\companies\ethiochicken.html:115
+msgid "ETB 30.00"
+msgstr "30.00 ብር"
+
+#: .\companies\templates\companies\ethiochicken.html:60
+msgid "Broilers"
+msgstr "ብሮይለሮች"
+
+#: .\companies\templates\companies\ethiochicken.html:61
+msgid "Meat production chickens"
+msgstr "ሥጋ ለማምረት የሚያገለግሉ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:62
+#: .\companies\templates\companies\ethiochicken.html:120
+msgid "ETB 35.00"
+msgstr "35.00 ብር"
+
+#: .\companies\templates\companies\ethiochicken.html:65
+msgid "Layer"
+msgstr "አዳኝ"
+
+#: .\companies\templates\companies\ethiochicken.html:66
+msgid "Chickens for egg production"
+msgstr "እንቁላል ለማምረት የሚያገለግሉ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:67
+msgid "ETB 40.00"
+msgstr "40.00 ብር"
+
+#: .\companies\templates\companies\ethiochicken.html:70
+msgid "Broiler/Cobb"
+msgstr "ብሮይለር/ኮብ"
+
+#: .\companies\templates\companies\ethiochicken.html:71
+msgid "Chickens for meat production"
+msgstr "ሥጋ ለማምረት የሚያገለግሉ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:72
+msgid "ETB 45.00"
+msgstr "45.00 ብር"
+
+#: .\companies\templates\companies\ethiochicken.html:75
+msgid "Red Ranger"
+msgstr "ሬድ ሬንጀር"
+
+#: .\companies\templates\companies\ethiochicken.html:76
+msgid "Free-range chickens"
+msgstr "ነፃ የሚዘዋወሩ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:77
+msgid "ETB 50.00"
+msgstr "50.00 ብር"
+
+#: .\companies\templates\companies\ethiochicken.html:85
+msgid "Feeds Type and Price Updates"
+msgstr "የመኖ ዓይነቶች እና የዋጋ ማዘመኛ"
+
+#: .\companies\templates\companies\ethiochicken.html:86
+msgid ""
+"This section provides an overview of the different types of feeds available "
+"and their respective prices."
+msgstr "ይህ ክፍል ስለሚገኙ የተለያዩ የመኖ ዓይነቶች እና የዋጋ መረጃ አጠቃላይ እይታ ይሰጣል።"
+
+#: .\companies\templates\companies\ethiochicken.html:91
+msgid "Feed Type"
+msgstr "የመኖ ዓይነት"
+
+#: .\companies\templates\companies\ethiochicken.html:98
+msgid "Starter Feed"
+msgstr "ጀማሪ መኖ"
+
+#: .\companies\templates\companies\ethiochicken.html:99
+msgid "For day-old chicks"
+msgstr "ለአንድ ቀን የዕድሜ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:100
+msgid "ETB 15.00"
+msgstr "15.00 ብር"
+
+#: .\companies\templates\companies\ethiochicken.html:103
+msgid "Grower Feed"
+msgstr "የእድገት መኖ"
+
+#: .\companies\templates\companies\ethiochicken.html:104
+msgid "For growing chickens"
+msgstr "ለሚያድጉ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:108
+msgid "Layer Feed"
+msgstr "ለአዳኝ ዶሮዎች የሚያገለግል መኖ"
+
+#: .\companies\templates\companies\ethiochicken.html:109
+msgid "For egg-laying hens"
+msgstr "ለእንቁላል የሚያፈሩ ዶሮዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:113
+msgid "Broiler Feed"
+msgstr "ለብሮይለር ዶሮዎች የሚያገለግል መኖ"
+
+#: .\companies\templates\companies\ethiochicken.html:114
+msgid "For meat production"
+msgstr "ለሥጋ ምርት"
+
+#: .\companies\templates\companies\ethiochicken.html:118
+msgid "Finisher Feed"
+msgstr "የመጨረሻ ደረጃ መኖ"
+
+#: .\companies\templates\companies\ethiochicken.html:119
+msgid "For finishing broilers"
+msgstr "ለብሮይለር ዶሮዎች የመጨረሻ ደረጃ ምግብ"
+
+#: .\companies\templates\companies\ethiochicken.html:130
+msgid "About EthioChicken"
+msgstr "ስለ ኢትዮቺክክን"
+
+#: .\companies\templates\companies\ethiochicken.html:133
+msgid ""
+"Ethiochicken is a leading poultry company in Ethiopia, dedicated to "
+"improving the livelihoods of smallholder farmers through the provision of "
+"high-quality poultry products and services."
+msgstr ""
+"ኢትዮቺክክን በኢትዮጵያ ውስጥ የሚመራ የዶሮ እርባታ ኩባንያ ሲሆን፣ ከፍተኛ ጥራት ያላቸውን የዶሮ ምርቶች እና "
+"አገልግሎቶች በመስጠት የትናንሽ አርሶ አደሮችን ኑሮ ለማሻሻል ቁርጠኛ ነው።"
+
+#: .\companies\templates\companies\ethiochicken.html:138
+msgid "Our Mission"
+msgstr "ተልእኳችን"
+
+#: .\companies\templates\companies\ethiochicken.html:139
+msgid ""
+"To enhance food security and create sustainable livelihoods in rural "
+"communities through poultry farming."
+msgstr "በዶሮ እርባታ በገጠር ማህበረሰቦች ውስጥ የምግብ ዋስትናን ማሻሻል እና ዘላቂ መኖርያ ለመፍጠር።"
+
+#: .\companies\templates\companies\ethiochicken.html:143
+msgid "Our Vision"
+msgstr "ራእያችን"
+
+#: .\companies\templates\companies\ethiochicken.html:144
+msgid ""
+"To be the catalyst for poultry-led transformation in Ethiopian agriculture."
+msgstr "በኢትዮጵያ ግብርና ውስጥ በዶሮ እርባታ የተነሳ ለውጥ የሚያምጣ ተቋም መሆን።"
+
+#: .\companies\templates\companies\ethiochicken.html:153
+msgid "Our Value to Farmers"
+msgstr "ለአርሶ አደሮች የምንሰጠው ዋጋ"
+
+#: .\companies\templates\companies\ethiochicken.html:158
+msgid "Quality Breeds"
+msgstr "ከፍተኛ ጥራት ያላቸው ዝርያዎች"
+
+#: .\companies\templates\companies\ethiochicken.html:159
+msgid "Providing high-quality poultry breeds adapted to local conditions."
+msgstr "ለአካባቢው የተስማሙ ከፍተኛ ጥራት ያላቸው የዶሮ ዝርያዎችን ማቅረብ።"
+
+#: .\companies\templates\companies\ethiochicken.html:163
+msgid "Premium Feed"
+msgstr "ከፍተኛ ጥራት ያለው መኖ"
+
+#: .\companies\templates\companies\ethiochicken.html:164
+msgid "Nutritionally balanced feed formulations for optimal growth."
+msgstr "ለተሻለ እድገት ምግባራዊ የሆነ የምግብ አዘገጃጀት።"
+
+#: .\companies\templates\companies\ethiochicken.html:168
+msgid "Farmer Training"
+msgstr "ለአርሶ አደሮች ስልጠና"
+
+#: .\companies\templates\companies\ethiochicken.html:169
+msgid "Comprehensive training programs for successful poultry farming."
+msgstr "የተሳካ የዶሮ እርባታ ለማምረት የተሟላ የስልጠና ፕሮግራሞች።"
+
+#: .\companies\templates\companies\ethiochicken.html:173
+msgid "Veterinary Support"
+msgstr "የእንስሳት ሕክምና ድጋፍ"
+
+#: .\companies\templates\companies\ethiochicken.html:174
+msgid "Access to veterinary services and disease prevention."
+msgstr "ወደ የእንስሳት ሕክምና አገልግሎቶች እና የጤና ጥበቃ መዳረሻ።"
+
+#: .\companies\templates\companies\ethiochicken.html:182
+msgid "Contact Us"
+msgstr "አግኙን"
+
+#: .\companies\templates\companies\ethiochicken.html:188
+#: .\companies\templates\companies\nvi.html:149
+msgid "Email"
+msgstr "ኢሜይል"
+
+#: .\companies\templates\companies\ethiochicken.html:191
+msgid "Copy"
+msgstr "ቅዳ"
+
+#: .\companies\templates\companies\ethiochicken.html:196
+msgid "Phone"
+msgstr "ስልክ"
+
+#: .\companies\templates\companies\ethiochicken.html:201
+msgid "Call"
+msgstr "ይደውሉ"
+
+#: .\companies\templates\companies\ethiochicken.html:206
+#: .\companies\templates\companies\nvi.html:144
+msgid "Address"
+msgstr "አድራሻ"
+
+#: .\companies\templates\companies\ethiochicken.html:207
+msgid "Ethio China Street, Kadco Group"
+msgstr "ኢትዮ ቻይና ጎዳና፣ ካድኮ ቡድን"
+
+#: .\companies\templates\companies\ethiochicken.html:208
+msgid "Building #2, 6th floor,"
+msgstr "ህንፃ #2፣ 6ኛ ፎቅ"
+
+#: .\companies\templates\companies\ethiochicken.html:209
+msgid "Addis Ababa, Ethiopia"
+msgstr "አዲስ አበባ፣ ኢትዮጵያ"
+
+#: .\companies\templates\companies\ethiochicken.html:211
+msgid "View Map"
+msgstr "ካርታ ይመልከቱ"
+
+#: .\companies\templates\companies\ethiochicken.html:221
+msgid "Farmer Success Stories"
+msgstr "የአርሶ አደሮች የድንቅ ታሪኮች"
+
+#: .\companies\templates\companies\ethiochicken.html:227
+msgid ""
+"'EthioChicken changed my life. With their training and quality chicks, my "
+"poultry business has grown threefold in just one year.'"
+msgstr ""
+"'ኢትዮቺክክን ሕይወቴን ለውጧል። በስልጠናቸው እና በብቃት ያላቸው ዶሮዎች የዶሮ ንግዴ በአንድ ዓመት ብቻ ሦስት እጥፍ "
+"ጨምሯል።'"
+
+#: .\companies\templates\companies\ethiochicken.html:228
+msgid "- Ato Kebede, Smallholder Farmer"
+msgstr "- አቶ ከበደ፣ ትንሽ አርሶ አደር"
+
+#: .\companies\templates\companies\index.html:11
+msgid "companies list"
+msgstr "የኩባንያዎች ዝርዝር"
+
+#: .\companies\templates\companies\nvi.html:16
+msgid "National Veterinary Institute"
+msgstr "ብሔራዊ የእንስሳት ሕክምና ተቋም"
+
+#: .\companies\templates\companies\nvi.html:17
+msgid "Advancing Animal Health in Ethiopia "
+msgstr "በኢትዮጵያ የእንስሳት ጤናን ማሳደግ"
+
+#: .\companies\templates\companies\nvi.html:22
+msgid "About Us"
+msgstr "ስለ እኛ"
+
+#: .\companies\templates\companies\nvi.html:25
+msgid "Vision"
+msgstr "ራእይ"
+
+#: .\companies\templates\companies\nvi.html:26
+msgid ""
+"By 2029 G.C the institute will fulfill the national demand for veterinary "
+"vaccines and drugs and become a competitive institute in Africa."
+msgstr ""
+"በ2029 ዓ.ም. ተቋሙ ለእንስሳት ሕክምና የሚያስፈልጉትን ክትባቶች እና መድሃኒቶች የሀገሪቱን ፍላጎት በሙሉ ያሟላ እና "
+"በአፍሪካ ውስጥ ተወዳዳሪ ተቋም ይሆናል።"
+
+#: .\companies\templates\companies\nvi.html:30
+msgid "Mission"
+msgstr "ተልእኳ"
+
+#: .\companies\templates\companies\nvi.html:31
+msgid ""
+"Producing and supplying quality veterinary vaccines, drugs, and biologicals "
+"at affordable prices for the domestic market to support the livestock "
+"sector, generating foreign currency through exports, and sustaining "
+"profitability."
+msgstr ""
+"ለእንስሳት ዘርፍ ድጋፍ ለመስጠት፣ የውጭ ገንዘብ በማግኘት እና ትርፋማነትን በማቆየት ለውስጥ ገበያ ተመጣጣኝ ዋጋ "
+"ያላቸውን ከፍተኛ ጥራት ያላቸውን የእንስሳት ሕክምና ክትባቶች፣ መድሃኒቶች እና ባዮሎጂካል ምርቶችን ማምረት እና ማቅረብ።"
+
+#: .\companies\templates\companies\nvi.html:38
+msgid "Quick Links"
+msgstr "ፈጣን አገናኞች"
+
+#: .\companies\templates\companies\nvi.html:40
+msgid "Feedback"
+msgstr "ግብረመልስ"
+
+#: .\companies\templates\companies\nvi.html:41
+msgid " All News"
+msgstr "ሁሉም ዜናዎች"
+
+#: .\companies\templates\companies\nvi.html:42
+msgid "Downloads"
+msgstr "ማውረዶች"
+
+#: .\companies\templates\companies\nvi.html:43
+msgid " Vacancy"
+msgstr "ስራ ክፍት"
+
+#: .\companies\templates\companies\nvi.html:44
+msgid "Partners"
+msgstr "አጋሮች"
+
+#: .\companies\templates\companies\nvi.html:49
+msgid " Our Vaccines"
+msgstr "ክትባቶቻችን"
+
+#: .\companies\templates\companies\nvi.html:59
+msgid "LIVE NEWCASTLE DISEASE VACCINE"
+msgstr "ሕያው ኒውካስል በሽታ ክትባት"
+
+#: .\companies\templates\companies\nvi.html:60
+#: .\companies\templates\companies\nvi.html:73
+#: .\companies\templates\companies\nvi.html:86
+#: .\companies\templates\companies\nvi.html:99
+#: .\companies\templates\companies\nvi.html:112
+#: .\companies\templates\companies\nvi.html:125
+msgid "View Details"
+msgstr "ዝርዝሮችን ይመልከቱ"
+
+#: .\companies\templates\companies\nvi.html:72
+msgid "INACTIVATED NEWCASTLE OIL EMULSION VACCINE"
+msgstr "እንቅስቃሴ የሌለው ኒውካስል ዘይት ኤሙልሽን ክትባት"
+
+#: .\companies\templates\companies\nvi.html:85
+msgid "NEWCASTLE DISEASE THERMOSTABLE VACCINE"
+msgstr "ኒውካስል በሽታ የሙቀት የማያስቆል ክትባት"
+
+#: .\companies\templates\companies\nvi.html:98
+msgid "FOWL POX VACCINE"
+msgstr "የዶሮ ቁስል ክትባት"
+
+#: .\companies\templates\companies\nvi.html:111
+msgid "INFECTIOUS BURSAL DISEASE /GUMBORO/ VACCINE"
+msgstr "ተባባሪ ቡርሳል በሽታ /ጉምቦሮ/ ክትባት"
+
+#: .\companies\templates\companies\nvi.html:124
+msgid "Marek’s Disease Vaccine (HVT)"
+msgstr "ማሬክ በሽታ ክትባት (HVT)"
+
+#: .\companies\templates\companies\nvi.html:134
+msgid " Contact Us"
+msgstr " ያግኙን"
+
+#: .\companies\templates\companies\nvi.html:137
+msgid " Phone"
+msgstr " ስልክ"
+
+#: .\companies\templates\companies\nvi.html:138
+msgid "Tel: 251-114-33-84-11/16"
+msgstr "ስልክ፡ 251-114-33-84-11/16"
+
+#: .\companies\templates\companies\nvi.html:139
+msgid "Mobile: 251-903-04-88-88"
+msgstr "ሞባይል፡ 251-903-04-88-88"
+
+#: .\companies\templates\companies\nvi.html:140
+msgid "Fax: 251-114-33-93-00"
+msgstr "ፋክስ፡ 251-114-33-93-00"
+
+#: .\companies\templates\companies\nvi.html:145
+msgid "P.O. Box 19, Bishoftu, Ethiopia"
+msgstr "ፖ.ሳ.ቁ 19፣ ቢሾፍቱ፣ ኢትዮጵያ"
+
+#: .\companies\templates\companies\nvi.html:156
+msgid "Visit Official Website"
+msgstr "ይፎታ ድረገጽ ይጎብኙ"
+
+#: .\companies\templates\companies\nvi.html:163
+msgid ""
+"NVI is committed to improving animal health and productivity in Ethiopia "
+"through the development and distribution of high-quality veterinary products."
+msgstr ""
+"NVI ከፍተኛ ጥራት ያላቸውን የእንስሳት ሕክምና ምርቶች በማዘጋጀት እና በማሰራጨት በኢትዮጵያ ውስጥ የእንስሳት ጤናና "
+"ምርታማነት ለማሻሻል ቁርጠኛ ነው።"

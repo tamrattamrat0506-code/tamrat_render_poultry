@@ -1,0 +1,60 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'conversation/css/new.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="new-conversation-container">
+  <div class="conversation-header">
+    <h1>{% trans "New Message" %}</h1>
+    <p>{% trans "Contact the seller about:" %} <a href="{% url 'items:item_detail' item.id %}">{{ item.name }}</a>
+    </p>
+  </div>
+
+  {% if form.errors %}
+  <div class="form-errors">
+    {% for field, errors in form.errors.items %}
+      {% for error in errors %}
+      <div class="alert alert-error">
+        <i class="fas fa-exclamation-circle"></i>
+        {{ error }}
+      </div>
+      {% endfor %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <form method="post" class="conversation-form" id="new-conversation-form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="{{ form.content.id_for_label }}">{% trans "Your Message" %}</label>
+      {{ form.content }}
+      {% if form.content.help_text %}
+      <small class="form-help">{{ form.content.help_text }}</small>
+      {% endif %}
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="submit-button">
+        <i class="fas fa-paper-plane"></i> {% trans "Send Message" %}
+      </button>
+      <a href="{% url 'items:item_detail' item.id %}" class="cancel-button">{% trans "Cancel" %}</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  document.getElementById('new-conversation-form').addEventListener('submit', function(e) {
+    const submitButton = this.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  });
+</script>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'conversation/js/new.js' %}"></script>
+{% endblock %}
+

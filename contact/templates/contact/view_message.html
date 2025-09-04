@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'contact/css/view_message.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="message-detail-container">
+  <h1 class="message-detail-title">{% trans "Message Details" %}</h1>
+  
+  <div class="message-detail-card">
+    <div class="message-header">
+      <h2>{{ message.subject }}</h2>
+      <div class="message-meta">
+        <span><strong>{% trans "From:" %}</strong> {{ message.name }} &lt;{{ message.email }}&gt;</span>
+        <span><strong>{% trans "Received:" %}</strong> {{ message.created_at }}</span>
+      </div>
+    </div>
+    
+    <div class="message-body">
+      <p>{{ message.message|linebreaks }}</p>
+    </div>
+    
+    <div class="message-actions">
+      <a href="{% url 'contact:received_messages' %}" class="btn btn-secondary">
+        {% trans "Back to Messages" %}
+      </a>
+      <a href="{% url 'contact:delete_message' message.id %}" class="btn btn-danger">
+        {% trans "Delete Message" %}
+      </a>
+      <a href="mailto:{{ message.email }}?subject=Re: {{ message.subject }}" class="btn btn-primary">
+        {% trans "Reply" %}
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'contact/js/view_message.js' %}"></script>
+{% endblock %}

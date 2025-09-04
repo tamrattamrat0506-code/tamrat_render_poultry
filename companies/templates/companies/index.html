@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load contact_extras %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'companies/css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="index-container">
+  <h1 class="index-title">{% trans "companies list" %}</h1>
+  
+   <h2><a href ="{% url 'companies:nvi' %}" class="nvi" > NVI </a></h2>
+   <h2><a href ="{% url 'companies:alema' %}" class="alema" > alema </a></h2>
+   <h2><a href="{% url 'companies:ethiochicken' %}" class="ethiochicken"> ethiochicken </a></h2>
+
+</div>
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'companies/js/index.js' %}"></script>
+{% endblock %}

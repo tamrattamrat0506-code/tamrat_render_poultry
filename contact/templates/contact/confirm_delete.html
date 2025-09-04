@@ -1,0 +1,21 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="delete-confirmation">
+    <h1>{% trans "Confirm Deletion" %}</h1>
+    <p>{% trans "Are you sure you want to delete this message?" %}</p>
+    
+    <div class="message-preview">
+        <p><strong>{% trans "From:" %}</strong> {{ object.name }} &lt;{{ object.email }}&gt;</p>
+        <p><strong>{% trans "Subject:" %}</strong> {{ object.subject }}</p>
+        <p><strong>{% trans "Message:" %}</strong> {{ object.message|truncatechars:50 }}</p>
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">{% trans "Yes, delete" %}</button>
+        <a href="{% url 'contact:received_messages' %}" class="btn btn-secondary">{% trans "Cancel" %}</a>
+    </form>
+</div>
+{% endblock %}

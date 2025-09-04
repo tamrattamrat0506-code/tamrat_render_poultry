@@ -1,0 +1,51 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'clothings/css/clothing_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="clothing-detail-container">
+    <div class="clothing-gallery">
+        <img id="mainClothingImage" src="{{ clothing.images.first.image.url }}" alt="{{ clothing.name }}" class="main-image">
+        <span class="carted-badge {% if clothing.is_carted %}carted{% endif %}">
+            <i class="fas fa-shopping-cart"></i>
+        </span>
+
+        <div class="thumbnail-gallery">
+            {% for image in clothing.images.all %}
+            <img src="{{ image.image.url }}" alt="{{ clothing.name }}" class="thumbnail" onclick="updateMainImage(this)">
+            {% endfor %}
+        </div>
+        <div class="interaction-buttons">
+            <button type="button" class="interaction-button like-button" data-item-id="{{ clothing.id }}">
+                <i class="fas fa-thumbs-up"></i> <span class="interaction-count">{{ clothing.like_count }}</span>
+            </button>
+            <button type="button" class="interaction-button share-button" data-item-id="{{ clothing.id }}">
+                <i class="fas fa-share-alt"></i> <span class="interaction-count">{{ clothing.share_count }}</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="clothing-info">
+        <h1>{{ clothing.name }}</h1>
+        <div class="price-section">
+            {% if clothing.is_on_sale %}
+            <span class="original-price">${{ clothing.price }}</span>
+            <span class="sale-price">${{ clothing.discount_price }}</span>
+            {% else %}
+            <span class="current-price">${{ clothing.price }}</span>
+            {% endif %}
+        </div>
+        <p>{{ clothing.description }}</p>
+        
+        <a href="{% url 'cart:add_to_cart' app_label model_name clothing.id %}">{% trans "Add to Cart" %}</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'clothings/js/clothing_detail.js' %}"></script>
+{% endblock %}

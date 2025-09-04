@@ -1,0 +1,108 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'poultryitems/css/chicken_sellers.css' %}">
+<!-- Add Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="chicken-seller-list">
+    <h2>{% trans "Chicken Sellers" %}</h2>
+    
+    <!-- Search and Filter Form -->
+    <div class="search-filter-container">
+        <form method="GET" action="{% url 'poultryitems:chicken_sellers_list' %}" class="search-filter-form">
+            <div class="search-box">
+                <input type="text" name="search" id="searchInput" placeholder="{% trans 'Search sellers...' %}" value="{{ search_query }}">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="filter-box">
+                <select name="location" id="locationFilter">
+                    <option value="">{% trans "All Locations" %}</option>
+                    {% for location in locations %}
+                        <option value="{{ location }}" {% if selected_location == location %}selected{% endif %}>{{ location }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">{% trans "Filter" %}</button>
+            </div>
+        </form>
+    </div>
+    
+    <!--chicken seller register-->
+    <div class="register-seller">
+        <a href="{% url 'poultryitems:register_seller' %}" class="register-button"><i class="fas fa-user-plus"></i>{% trans "Register as a Chicken Seller" %}</a>
+    </div>
+
+    <ul id="sellerList">
+        {% for seller in sellers %}
+        <li class="seller-item" data-location="{{ seller.location }}" data-quantity="{{ seller.available_quantity }}">
+            <div class="chicken-seller-header">
+                <div class="chicken-seller-name">{{ seller.farm_name }}</div>
+            </div>
+            <div class="chicken-seller-details">
+                <p><strong>{% trans "Location:" %}</strong> {{ seller.location }}</p>
+                <p><strong>{% trans "Available Chickens:" %}</strong> {{ seller.available_quantity }}</p>
+                <p><strong>{% trans "Price Range:" %}</strong> {{ seller.price_range }}</p>
+                <p><strong>{% trans "Breeds:" %}</strong> {{ seller.breeds }}</p>
+            </div>
+            <div class="dropdown">
+                <p class="description">{{ seller.description }}</p>
+                <div class="seller-features">
+                    {% if seller.delivery_available %}
+                    <span class="feature-tag"><i class="fas fa-truck"></i> {% trans "Delivery Available" %}</span>
+                    {% endif %}
+                    {% if seller.vaccinated %}
+                    <span class="feature-tag"><i class="fas fa-check-circle"></i> {% trans "Vaccinated" %}</span>
+                    {% endif %}
+                </div>
+                <p class="contact"><strong>{% trans "Contact:" %}</strong> {{ seller.contact_number }}</p>
+                <p class="email"><strong>{% trans "Email:" %}</strong> {{ seller.email }}</p>
+                <div class="social-links">
+                    {% if seller.facebook_url %}
+                    <a href="{{ seller.facebook_url }}" class="social-link facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    {% endif %}
+                    {% if seller.telegram_handle %}
+                    <a href="https://t.me/{{ seller.telegram_handle }}" class="social-link telegram" target="_blank"><i class="fab fa-telegram"></i></a>
+                    {% endif %}
+                    <a href="mailto:{{ seller.email }}" class="social-link email"><i class="far fa-envelope"></i></a>
+                    {% if seller.whatsapp_number %}
+                    <a href="https://wa.me/{{ seller.whatsapp_number }}" class="social-link whatsapp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    {% endif %}
+                    {% if seller.instagram_handle %}
+                    <a href="https://instagram.com/{{ seller.instagram_handle }}" class="social-link instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    {% endif %}
+                    {% if seller.youtube_channel %}
+                    <a href="{{ seller.youtube_channel }}" class="social-link youtube" target="_blank"><i class="fab fa-youtube"></i></a>
+                    {% endif %}
+                </div>
+
+                {% if user.is_authenticated and user == seller.user or user.is_staff %}
+                <div class="seller-actions">
+                    <a href="{% url 'poultryitems:edit_seller' seller.id %}" class="btn-edit" title="Edit">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a href="{% url 'poultryitems:delete_seller' seller.id %}" class="btn-delete" title="Delete" data-seller-id="{{ seller.id }}" data-seller-name="{{ seller.farm_name }}">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+                {% endif %}
+
+            </div>
+        </li>
+        {% empty %}
+        <div class="no-results">
+            <i class="fas fa-search" style="font-size: 3rem; margin-bottom: 20px;"></i>
+            <h3>{% trans "No sellers found" %}</h3>
+            <p>{% trans "Try adjusting your search criteria" %}</p>
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'poultryitems/js/chicken_sellers.js' %}"></script>
+{% endblock %}

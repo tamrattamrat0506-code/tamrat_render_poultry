@@ -1,0 +1,171 @@
+{% extends 'base/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load contact_extras %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'companies/css/nvi.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="nvi-container">
+  <!-- Hero Section -->
+  <div class="nvi-hero">
+    {% block nvi_logo %}
+    <img src="https://www.nvi.com.et/wp-content/uploads/2022/01/FinalH.png" alt="NVI Ethiopia Logo" class="nvi-logo">
+    {% endblock %}
+    <h1 class="nvi-title">{% trans "National Veterinary Institute" %}</h1>
+    <h2 class="nvi-subtitle">{% trans "Advancing Animal Health in Ethiopia " %}</h2>
+  </div>
+
+  <!-- About Section -->
+  <section class="nvi-section">
+    <h2 class="section-title"><i class="fas fa-info-circle"></i> {% trans "About Us" %}</h2>
+    <div class="nvi-card-container">
+      <div class="nvi-card">
+        <h3 class="card-title"><i class="fas fa-eye"></i> {% trans "Vision" %}</h3>
+        <p>{% trans "By 2029 G.C the institute will fulfill the national demand for veterinary vaccines and drugs and become a competitive institute in Africa." %}</p>
+      </div>
+      
+      <div class="nvi-card">
+        <h3 class="card-title"><i class="fas fa-bullseye"></i> {% trans "Mission" %}</h3>
+        <p>{% trans "Producing and supplying quality veterinary vaccines, drugs, and biologicals at affordable prices for the domestic market to support the livestock sector, generating foreign currency through exports, and sustaining profitability." %}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Links Section -->
+  <section class="nvi-section quick-links">
+    <h2 class="section-title"><i class="fas fa-link"></i> {% trans "Quick Links" %}</h2>
+    <div class="links-grid">
+      <a href="#" class="link-card"><i class="fas fa-comment-alt"></i> {% trans "Feedback" %}</a>
+      <a href="#" class="link-card"><i class="fas fa-newspaper"></i>{% trans " All News" %}</a>
+      <a href="#" class="link-card"><i class="fas fa-download"></i> {% trans "Downloads" %}</a>
+      <a href="#" class="link-card"><i class="fas fa-briefcase"></i>{% trans " Vacancy" %}</a>
+      <a href="#" class="link-card"><i class="fas fa-handshake"></i> {% trans "Partners" %}</a>
+    </div>
+  </section>
+
+ <section class="nvi-section vaccine-list">
+  <h2 class="section-title"><i class="fas fa-syringe"></i>{% trans " Our Vaccines" %}</h2>
+  <div class="vaccine-grid">
+    <!-- Vaccine Item 1 -->
+    <div class="vaccine-card">
+      <div class="vaccine-image-container">
+        <img src="http://www.nvi.com.et/wp-content/uploads/2017/02/GEDC0168-159x300.jpg" 
+             alt="LIVE NEWCASTLE DISEASE VACCINE" 
+             class="vaccine-image">
+      </div>
+      <div class="vaccine-info">
+        <h3 class="vaccine-title">{% trans "LIVE NEWCASTLE DISEASE VACCINE" %}</h3>
+        <button class="vaccine-details-btn">{% trans "View Details" %}</button>
+      </div>
+    </div>
+    
+    <!-- Vaccine Item 2 -->
+    <div class="vaccine-card">
+      <div class="vaccine-image-container">
+        <img src="http://www.nvi.com.et/wp-content/uploads/2017/02/DSC_4593-163x300.jpg" 
+             alt="INACTIVATED NEWCASTLE OIL EMULSION DISEASE VACCINE" 
+             class="vaccine-image">
+      </div>
+      <div class="vaccine-info">
+        <h3 class="vaccine-title">{% trans "INACTIVATED NEWCASTLE OIL EMULSION VACCINE" %}</h3>
+        <button class="vaccine-details-btn">{% trans "View Details" %}</button>
+      </div>
+    </div>
+    
+    <!-- Vaccine Item 3 -->
+    <div class="vaccine-card">
+      <div class="vaccine-image-container">
+        <img src="http://www.nvi.com.et/wp-content/uploads/2017/02/Newcastle-158x300.jpg" 
+             alt="Vaccine Example 3" 
+             class="vaccine-image">
+      </div>
+      <div class="vaccine-info">
+        <h3 class="vaccine-title">{% trans "NEWCASTLE DISEASE THERMOSTABLE VACCINE" %}</h3>
+        <button class="vaccine-details-btn">{% trans "View Details" %}</button>
+      </div>
+    </div>
+    
+    <!-- Vaccine Item 4 -->
+    <div class="vaccine-card">
+      <div class="vaccine-image-container">
+        <img src="http://www.nvi.com.et/wp-content/uploads/2017/03/fowlpox-151x300.jpg" 
+             alt="FOWL POX VACCINE" 
+             class="vaccine-image">
+      </div>
+      <div class="vaccine-info">
+        <h3 class="vaccine-title">{% trans "FOWL POX VACCINE" %}</h3>
+        <button class="vaccine-details-btn">{% trans "View Details" %}</button>
+      </div>
+    </div>
+    
+    <!-- Vaccine Item 5 -->
+    <div class="vaccine-card">
+      <div class="vaccine-image-container">
+        <img src="http://www.nvi.com.et/wp-content/uploads/2017/01/infectiosbursal-153x300.jpg" 
+             alt="INFECTIOUS BURSAL DISEASE /GUMBORO/ VACCINE" 
+             class="vaccine-image">
+      </div>
+      <div class="vaccine-info">
+        <h3 class="vaccine-title">{% trans "INFECTIOUS BURSAL DISEASE /GUMBORO/ VACCINE" %}</h3>
+        <button class="vaccine-details-btn">{% trans "View Details" %}</button>
+      </div>
+    </div>
+
+    <!-- Vaccine Item 6 -->
+    <div class="vaccine-card">
+      <div class="vaccine-image-container">
+        <img src="https://www.nvi.com.et/wp-content/uploads/2021/12/Marex.jpg" 
+             alt="Marek’s Disease Vaccine (HVT)" 
+             class="vaccine-image">
+      </div>
+      <div class="vaccine-info">
+        <h3 class="vaccine-title">{% trans "Marek’s Disease Vaccine (HVT)" %}</h3>
+        <button class="vaccine-details-btn">{% trans "View Details" %}</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Contact Section -->
+  <section class="nvi-section contact-section">
+    <h2 class="section-title"><i class="fas fa-envelope"></i>{% trans " Contact Us" %}</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3><i class="fas fa-phone-alt"></i>{% trans " Phone" %}</h3>
+        <p>{% trans "Tel: 251-114-33-84-11/16" %}</p>
+        <p>{% trans "Mobile: 251-903-04-88-88" %}</p>
+        <p>{% trans "Fax: 251-114-33-93-00" %}</p>
+      </div>
+      
+      <div class="contact-info">
+        <h3><i class="fas fa-map-marker-alt"></i> {% trans "Address" %}</h3>
+        <p>{% trans "P.O. Box 19, Bishoftu, Ethiopia" %}</p>
+      </div>
+      
+      <div class="contact-info">
+        <h3><i class="fas fa-envelope"></i> {% trans "Email" %}</h3>
+        <p>nvi-rt@ethionet.et</p>
+      </div>
+    </div>
+    
+    <div class="website-link">
+      <a href="https://www.nvi.gov.et" target="_blank" class="btn btn-primary">
+        <i class="fas fa-external-link-alt"></i> {% trans "Visit Official Website" %}
+      </a>
+    </div>
+  </section>
+
+  <!-- Additional Info -->
+  <section class="nvi-section">
+    <p class="nvi-description">{% trans "NVI is committed to improving animal health and productivity in Ethiopia through the development and distribution of high-quality veterinary products." %}</p>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block js %}
+  <script src="{% static 'companies/js/nvi.js' %}"></script>
+{% endblock %}

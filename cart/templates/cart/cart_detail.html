@@ -1,0 +1,29 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'cart/css/cart_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h2>Your Cart</h2>
+{% if cart.items.all %}
+    <ul>
+        {% for item in cart.items.all %}
+            <li>
+                {{ item.product.name }} - {{ item.quantity }} x {{ item.product.price }}
+                <a href="{% url 'cart:remove_from_cart' item.id %}">Remove</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Total: {{ cart.total_price }}</p>
+{% else %}
+    <p>Your cart is empty.</p>
+{% endif %}
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'cart/js/cart_detail.js' %}"></script>
+{% endblock %}

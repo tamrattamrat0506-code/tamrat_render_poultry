@@ -1,0 +1,40 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'users/css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <h2>{% trans "Login" %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="username">{% trans "Username:" %}</label>
+            <input type="text" name="username" required class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="phone_number">{% trans "Phone Number:" %}</label>
+            <input type="text" name="phone_number" required class="form-control">
+        </div>
+
+        <button type="submit" class="btn">{% trans "Login" %}</button>
+    </form>
+
+    <div class="register-link">
+        {% trans "Don't have an account?" %} <a href="{% url 'users:register' %}">{% trans "Register here" %}</a>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'users/js/login.js' %}"></script>
+{% endblock %}
