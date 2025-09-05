@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
 DEBUG = True
-ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1", "render-x1cx.onrender.com", "tamrat-render-poultry.onrender.com"]
+ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1", "tamrat-render-poultry.onrender.com"]
 
 LANGUAGES = [
     ('en', _('English')),
@@ -23,8 +23,7 @@ LANGUAGE_COOKIE_SAMESITE = 'Lax'
 REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379")
 
 CSRF_TRUSTED_ORIGINS = [
-    "tamrat-render-poultry.onrender.com",
-    "https://render-x1cx.onrender.com",
+    "https://tamrat-render-poultry.onrender.com",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
 ]
@@ -79,12 +78,21 @@ ASGI_APPLICATION = 'project.asgi.application'
 WSGI_APPLICATION = 'project.wsgi.application'
 DAPHNE_TIMEOUT = 50
 
+# Database Configuration
 DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+    'default': dj_database_url.config(
+        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
         conn_max_age=600,
+        ssl_require=not DEBUG
     )
 }
+
+# Use PostgreSQL if DATABASE_URL is set (production)
+if os.environ.get('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=True
+    )
 
 CHANNEL_LAYERS = {
     "default": {
@@ -135,3 +143,4 @@ TEMPLATES = [
 
 WHITENOISE_AUTOREFRESH = DEBUG
 WHITENOISE_USE_FINDERS = True
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
