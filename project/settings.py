@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
 DEBUG = True
-ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1", "render-x1cx.onrender.com"]
+ALLOWED_HOSTS = ["*", "localhost", "127.0.0.1", "render-x1cx.onrender.com", "tamrat-render-poultry.onrender.com"]
 
 LANGUAGES = [
     ('en', _('English')),
@@ -23,6 +23,7 @@ LANGUAGE_COOKIE_SAMESITE = 'Lax'
 REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379")
 
 CSRF_TRUSTED_ORIGINS = [
+    "tamrat-render-poultry.onrender.com",
     "https://render-x1cx.onrender.com",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
