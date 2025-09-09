@@ -80,12 +80,16 @@ DAPHNE_TIMEOUT = 50
 
 # Database Configuration
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
-        conn_max_age=600,
-        ssl_require=not DEBUG
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgresql_uuay',
+        'USER': 'postgresql_uuay_user',
+        'PASSWORD': 'j84POx5ZkxZnZP76PFK7chaMTCSaEmfs',
+        'HOST': 'dpg-d2t8aeh5pdvs739a4l1g-a.oregon-postgres.render.com',
+        'PORT': '5432',
+    }
 }
+
 
 # Use PostgreSQL if DATABASE_URL is set (production)
 if os.environ.get('DATABASE_URL'):

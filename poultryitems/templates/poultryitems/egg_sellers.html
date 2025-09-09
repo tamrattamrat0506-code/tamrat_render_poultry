@@ -10,14 +10,24 @@
 {% block content %}
 <div class="egg-sellers-container">
     <h2>{% trans "Egg Sellers" %}</h2>
-    
     <!-- Filter Form -->
+    <!-- Filter Section -->
     <div class="filter-section">
-        <form method="get" class="filter-form">
-            {{ filter_form.as_p }}
-            <button type="submit" class="filter-btn">{% trans "Apply Filters" %}</button>
-            <a href="{% url 'poultryitems:egg_sellers' %}" class="clear-btn">{% trans "Clear Filters" %}</a>
-        </form>
+        <button class="filter-toggle-btn">
+            <i class="fas fa-filter"></i> {% trans "Filters" %}
+        </button>
+        
+        <div class="filter-collapsible">
+            <form method="get" class="filter-form compact-filter">
+                <div class="filter-grid">
+                    {{ filter_form.as_p }}
+                </div>
+                <div class="filter-buttons">
+                    <button type="submit" class="filter-btn">{% trans "Find" %}</button>
+                    <a href="{% url 'poultryitems:egg_sellers' %}" class="clear-btn">{% trans "Cancel" %}</a>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Admin Links -->
@@ -33,7 +43,7 @@
         {% if sellers %}
         <ul>
             {% for seller in sellers %}
-            <li class="{% if seller.is_verified %}verified-seller{% endif %}">
+            <li class="egg-seller-card {% if seller.is_verified %}verified-seller{% endif %}">
                 <div class="egg-seller-header">
                     <div class="egg-seller-name">
                         {{ seller.farm_name }}
@@ -43,53 +53,9 @@
                         </span>
                         {% endif %}
                     </div>
-                    <div class="seller-rating">
-                        {% with ''|center:5 as range %}
-                        {% for i in range %}
-                            {% if forloop.counter <= seller.rating %}
-                                <i class="fas fa-star"></i>
-                            {% else %}
-                                <i class="far fa-star"></i>
-                            {% endif %}
-                        {% endfor %}
-                        {% endwith %}
-                        <span class="rating-count">({{ seller.review_count }})</span>
-                        <!-- Add this where you display each egg seller -->
-{% for seller in sellers %}
-<div class="egg-seller-card">
-    <!-- ... existing seller info ... -->
-    
-    {% if user.is_staff %}
-    <div class="seller-actions">
-        <a href="{% url 'poultryitems:edit_egg_seller' seller.pk %}" class="btn-edit" title="Edit">
-            <i class="fas fa-edit"></i> {% trans "Edit" %}
-        </a>
-        <button class="btn-delete" 
-                title="Delete" 
-                data-seller-id="{{ seller.pk }}" 
-                data-seller-name="{{ seller.farm_name }}">
-            <i class="fas fa-trash"></i> {% trans "Delete" %}
-        </button>
-        <a href="{% url 'poultryitems:delete_egg_seller' seller.pk %}" class="btn-delete-page">
-            <i class="fas fa-trash"></i> {% trans "Delete (Page)" %}
-        </a>
-    </div>
-    {% endif %}
-</div>
-{% endfor %}
-
-<!-- Add delete modal (similar to chicken sellers) -->
-<div id="deleteEggModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h3>{% trans "Confirm Delete" %}</h3>
-        <p>{% trans "Are you sure you want to delete" %} <span id="eggSellerName"></span>?</p>
-        <div class="modal-actions">
-            <button id="confirmEggDelete" class="btn-danger">{% trans "Delete" %}</button>
-            <button id="cancelEggDelete" class="btn-secondary">{% trans "Cancel" %}</button>
-        </div>
-    </div>
-</div>
+                    <!--dropdown arrow-->
+                    <div class="dropdown-arrow">
+                        <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
                 
@@ -125,11 +91,26 @@
                                        class="quantity-input">
                             </div>
                             <button type="button" class="order-btn" data-seller-id="{{ seller.id }}">
-                                {% trans "Order Now" %} - $<span class="total-price">{{ seller.price_per_dozen }}</span>
+                                {% trans "Order Now" %} - $<span class="total-price" data-original-price="{{ seller.price_per_dozen }}">{{ seller.price_per_dozen }}</span>
                             </button>
                         </form>
                     </div>
-                    
+                    {% if user.is_staff %}
+                <div class="seller-actions">
+                    <a href="{% url 'poultryitems:edit_egg_seller' seller.pk %}" class="btn-edit" title="Edit">
+                        <i class="fas fa-edit"></i> {% trans "Edit" %}
+                    </a>
+                    <button class="btn-delete" 
+                            title="Delete" 
+                            data-seller-id="{{ seller.pk }}" 
+                            data-seller-name="{{ seller.farm_name }}">
+                        <i class="fas fa-trash"></i> {% trans "Delete" %}
+                    </button>
+                    <a href="{% url 'poultryitems:delete_egg_seller' seller.pk %}" class="btn-delete-page">
+                        <i class="fas fa-trash"></i> {% trans "Delete (Page)" %}
+                    </a>
+                </div>
+                {% endif %}
                     <div class="social-links">
                         {% if seller.facebook %}
                         <a href="{{ seller.facebook }}" class="social-link facebook" target="_blank">
@@ -164,12 +145,25 @@
     </div>
 </div>
 
+<!-- Delete Modal -->
+<div id="deleteEggModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>{% trans "Confirm Delete" %}</h3>
+        <p>{% trans "Are you sure you want to delete" %} <span id="eggSellerName"></span>?</p>
+        <div class="modal-actions">
+            <button id="confirmEggDelete" class="btn-danger">{% trans "Delete" %}</button>
+            <button id="cancelEggDelete" class="btn-secondary">{% trans "Cancel" %}</button>
+        </div>
+    </div>
+</div>
+
 <!-- Order Modal -->
 <div id="orderModal" class="modal">
     <div class="modal-content">
         <span class="close-modal">&times;</span>
         <h3>{% trans "Place Your Order" %}</h3>
-        <form id="orderForm">
+        <form id="orderForm" action="{% url 'poultryitems:place_egg_order' %}" method="post">
             {% csrf_token %}
             <input type="hidden" id="modalSellerId" name="seller_id">
             
@@ -209,72 +203,4 @@
 
 {% block js %}
 <script src="{% static 'poultryitems/js/egg_sellers.js' %}"></script>
-<script>
-// Additional JavaScript for order functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const orderButtons = document.querySelectorAll('.order-btn');
-    const orderModal = document.getElementById('orderModal');
-    const orderForm = document.getElementById('orderForm');
-    const closeModal = document.querySelector('.close-modal');
-    
-    // Update total price when quantity changes
-    document.querySelectorAll('.quantity-input').forEach(input => {
-        input.addEventListener('change', function() {
-            const sellerId = this.closest('.order-form').dataset.sellerId;
-            const price = parseFloat('{{ seller.price_per_dozen }}'); // This needs dynamic update
-            const total = this.value * price;
-            this.closest('.order-form').querySelector('.total-price').textContent = total.toFixed(2);
-        });
-    });
-    
-    // Open order modal
-    orderButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const sellerId = this.dataset.sellerId;
-            const quantity = this.closest('.order-form').querySelector('.quantity-input').value;
-            
-            document.getElementById('modalSellerId').value = sellerId;
-            document.getElementById('quantity').value = quantity;
-            
-            orderModal.style.display = 'block';
-        });
-    });
-    
-    // Close modal
-    closeModal.addEventListener('click', function() {
-        orderModal.style.display = 'none';
-    });
-    
-    // Handle order form submission
-    orderForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const formData = new FormData(this);
-        const jsonData = Object.fromEntries(formData.entries());
-        
-        fetch('{% url "poultryitems:place_egg_order" %}', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            },
-            body: JSON.stringify(jsonData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert(data.message);
-                orderModal.style.display = 'none';
-                orderForm.reset();
-            } else {
-                alert('Error: ' + (data.message || 'Please check your input'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('An error occurred. Please try again.');
-        });
-    });
-});
-</script>
 {% endblock %}

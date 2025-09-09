@@ -1,4 +1,4 @@
-
+{% load django_browser_reload %}
 {% load static %}
 {% load i18n %}
 <!DOCTYPE html>
@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{% trans 'Ethiopian marketplace - Buy and sell products in Ethiopia' %}">
-    <title>{% trans "Sheger.xyz | Ethiopian Market place" %}</title>
+    <title>{% trans "Sheger.city | Ethiopian Market place" %}</title>
     <link rel="icon" href="{% static 'base/images/image2.jpg' %}" alt="MarketHub logo">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
@@ -52,9 +52,9 @@
                      <a>
                     <i class="fas fa-clock"></i> <span class="live-clock">{{ now|date:"Y-m-d H:i" }}</span>
                 <a>
-                    <a href="{% url 'contact:contact_us' %}"><i class="fas fa-headset" aria-hidden="true"></i> {% trans "All Items" %}</a>
+                    <a href="{% url 'contact:contact_us' %}" class="glowing-link" ><i class="fas fa-headset" aria-hidden="true"></i> {% trans "Contact US" %}</a>
                     <a href="#"><i class="fas fa-truck" aria-hidden="true"></i> +251 975 060 586</a>
-                    <a href="{% url 'base:message_list' %}"><i class="fas fa-user" aria-hidden="true"></i> {% trans "Contact Us" %}</a>
+                    
                 </div>
             </div>
         </div>
@@ -118,77 +118,138 @@
     </header>
 
     <nav class="category-nav" id="categoryNav">
-        <ul class="category-nav-list">
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'vehicles' %}active{% endif %}">
-        <a href="{% url 'vehicles:vehicle_list' %}" class="category-nav-link">
-            <i class="fas fa-car"></i>{% trans " Cars for Sale" %}
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'houses' %}active{% endif %}">
-        <a href="{% url 'houses:house_list' %}" class="category-nav-link">
-            <i class="fas fa-home"></i>{% trans " Houses for Sale" %}
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'electronics' %}active{% endif %}">
-        <a href="{% url 'electronics:product_list' %}" class="category-nav-link">
-            <i class="fas fa-laptop"></i>{% trans " Electronics" %}
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'clothings' %}active{% endif %}">
-        <a href="{% url 'clothings:clothing_list' %}" class="category-nav-link">
-            <i class="fas fa-tshirt"></i>{% trans " Clothing" %}
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'poultryitems' %}active{% endif %}">
-        <a href="{% url 'poultryitems:index' %}" class="category-nav-link">
-            <i class="fas fa-feather-alt"></i>{% trans " Poultry Items" %}
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'base' and request.resolver_match.url_name == 'about_us' %}active{% endif %}">
-        <a href="{% url 'base:about_us' %}" class="category-nav-link">
-            <i class="fas fa-info-circle"></i>{% trans " About us" %}
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'users' %}active{% endif %}">
-        <a href="{% url 'users:user_list' %}" class="category-nav-link">
-            <i class="fas fa-users"></i>{% trans " User list" %}
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'cart' %}active{% endif %}">
-        <a href="{% url 'cart:cart_detail' %}" class="category-nav-link">
-            <i class="fas fa-shopping-cart"></i>{% trans " Cart" %} ({{ cart_item_count|default:0 }})
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'base' %}active{% endif %}">
-        <a href="{% url 'contact:contact_us' %}" class="category-nav-link">
-            <i class="fas fa-envelope"></i>
-            Contact Us
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'base' %}active{% endif %}">
-        <a href="/" class="category-nav-link">
-            <i class="fas fa-bars"></i>
-            Line break for admins
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'base' and request.resolver_match.url_name == 'admin_links' %}active{% endif %}">
-        <a href="{% url 'base:admin_links' %}" class="category-nav-link">
-            <i class="fas fa-user-shield"></i>{% trans " Admin Links" %}
-        </a>
-    </li>
-    <li class="category-nav-item {% if request.resolver_match.app_name == 'base' and request.resolver_match.url_name == 'message_list' %}active{% endif %}">
-        <a href="{% url 'base:message_list' %}" class="category-nav-link">
-            <i class="fas fa-envelope"></i>{% trans " Message" %}
-        </a>
-    </li>
-</ul>
+    <div class="category-nav-header">
+        <h3 class="category-nav-title">{% trans "Browse Categories" %}</h3>
+        <button class="nav-close-btn" id="navCloseBtn" aria-label="Close navigation">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>        
+    <ul class="category-nav-list">
+        <li class="category-nav-item has-dropdown">
+            <a href="#" class="category-nav-link dropdown-toggle" aria-expanded="false" aria-controls="carMenu">
+                <i class="fas fa-car"></i>
+                <span class="link-text">{% trans " Car Section" %}</span>
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+            </a>
+             <ul id="carMenu" class="category-nav-dropdown">
+                <li class="category-nav-item">
+                    <a href="{% url 'vehicles:vehicle_list' %}" class="category-nav-link">
+                        <i class="fas fa-list"></i>
+                        <span class="link-text">{% trans "All Cars" %}</span>
+                    </a>
+                </li>
+                <li class="category-nav-item">
+                    <a href="{% url 'vehicles:vehicle_add' %}" class="category-nav-link">
+                        <i class="fas fa-user-tie"></i>
+                        <span class="link-text">{% trans "Add car" %}</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="category-nav-item {% if request.resolver_match.app_name == 'houses' %}active{% endif %}">
+            <a href="{% url 'houses:house_list' %}" class="category-nav-link">
+                <i class="fas fa-home"></i>
+                <span class="link-text">{% trans "Houses for Sale" %}</span>
+            </a>
+        </li>
+        <li class="category-nav-item {% if request.resolver_match.app_name == 'electronics' %}active{% endif %}">
+            <a href="{% url 'electronics:product_list' %}" class="category-nav-link">
+                <i class="fas fa-laptop"></i>
+                <span class="link-text">{% trans "Electronics" %}</span>
+            </a>
+        </li>
+        <li class="category-nav-item {% if request.resolver_match.app_name == 'clothings' %}active{% endif %}">
+            <a href="{% url 'clothings:clothing_list' %}" class="category-nav-link">
+                <i class="fas fa-tshirt"></i>
+                <span class="link-text">{% trans "Clothing" %}</span>
+            </a>
+        </li>
+        <li class="category-nav-item {% if request.resolver_match.app_name == 'poultryitems' %}active{% endif %}">
+            <a href="{% url 'poultryitems:index' %}" class="category-nav-link">
+                <i class="fas fa-feather-alt"></i>
+                <span class="link-text">{% trans "Poultry Section" %}</span>
+            </a>
+        </li>
+        <li class="category-nav-item has-dropdown">
+            <a href="#" class="category-nav-link dropdown-toggle" aria-expanded="false" aria-controls="userMenu">
+                <i class="fas fa-user-circle"></i>
+                <span class="link-text">{% trans "User Actions" %}</span>
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+            </a>
+            <ul id="userMenu" class="category-nav-dropdown">
+                {% if user.is_authenticated %}
+                <li class="category-nav-item">
+                    <a href="{% url 'users:profile' %}" class="category-nav-link">
+                        <i class="fas fa-user-cog"></i>
+                        <span class="link-text">{% trans "Profile" %}</span>
+                    </a>
+                </li>
+                <li class="category-nav-item">
+                    <a href="{% url 'conversation:inbox' %}" class="category-nav-link">
+                        <i class="far fa-envelope"></i>
+                        <span class="link-text">{% trans "Messages" %}</span>
+                        <span class="count" id="navbarUnread">0</span>
+                    </a>
+                </li>
+                {% else %}
+                <li class="category-nav-item">
+                    <a href="{% url 'users:register' %}" class="category-nav-link">
+                        <i class="fas fa-user-plus"></i>
+                        <span class="link-text">{% trans "Register" %}</span>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </li>
+        <li class="category-nav-item has-dropdown">
+            <a href="#" class="category-nav-link dropdown-toggle" aria-expanded="false" aria-controls="adminMenu">
+                <i class="fas fa-lock"></i>
+                <span class="link-text">{% trans "Admin & Moderation" %}</span>
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+            </a>
+            <ul id="adminMenu" class="category-nav-dropdown">
+                {% if user.is_staff or user.is_superuser %}
+                <li class="category-nav-item">
+                    <a href="{% url 'base:admin_links' %}" class="category-nav-link">
+                        <i class="fas fa-user-shield"></i>
+                        <span class="link-text">{% trans "Admin Links" %}</span>
+                    </a>
+                </li>
+                <li class="category-nav-item">
+                    <a href="{% url 'base:message_list' %}" class="category-nav-link">
+                        <i class="fas fa-inbox"></i>
+                        <span class="link-text">{% trans "Messages" %}</span>
+                    </a>
+                </li>
+                {% endif %}
+                <li class="category-nav-item">
+                    <a href="{% url 'users:user_list' %}" class="category-nav-link">
+                        <i class="fas fa-users"></i>
+                        <span class="link-text">{% trans "User List" %}</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="category-nav-item {% if request.resolver_match.app_name == 'contact' %}active{% endif %}">
+            <a href="{% url 'contact:contact_us' %}" class="category-nav-link">
+                <i class="fas fa-headset"></i>
+                <span class="link-text">{% trans "Contact Us" %}</span>
+            </a>
+        </li>
+        <li class="category-nav-item {% if request.resolver_match.url_name == 'about_us' %}active{% endif %}">
+            <a href="{% url 'base:about_us' %}" class="category-nav-link">
+                <i class="fas fa-info-circle"></i>
+                <span class="link-text">{% trans "About Us" %}</span>
+            </a>
+        </li>
+    </ul>
 </nav>
 
 <nav class="main-nav" id="navMenu">
     <div class="container">
     <ul class="nav-list">
         <li class="nav-item mega-menu {% if request.resolver_match.app_name == 'base' %}active{% endif %}">
-            <a href="/" class="nav-link active"><i class="fas fa-home"></i>{% trans " Home" %}</a></li>
+            <a href="/" class="nav-link active"><i class="fas fa-home"></i>.</a></li>
 
         <li class="nav-item mega-menu {% if request.resolver_match.app_name == 'vehicles' %}active{% endif %}">
     <a href="{% url 'vehicles:vehicle_list' %}" class="nav-link">
@@ -236,10 +297,10 @@
                     <div class="footer-logo">
                         <a href="#">
                             <span class="logo-icon"><i class="fas fa-store"></i></span>
-                            <span class="logo-text">{% trans "Market" %}<span>{% trans "Hub" %}</span></span>
+                            <span class="logo-text">{% trans "Sheger" %}<span>{% trans "City" %}</span></span>
                         </a>
                     </div>
-                    <p class="footer-about">{% trans "Sheger.xyz is your one-stop online marketplace for cars, houses, electronics, clothing and kids toys. We connect buyers and sellers across the globe." %}</p>
+                    <p class="footer-about">{% trans "Sheger.city is your one-stop online marketplace for cars, houses, electronics, clothing and kids toys. We connect buyers and sellers across the globe." %}</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
@@ -280,7 +341,7 @@
             </div>
             <div class="footer-bottom">
                 <div class="copyright">
-                    &copy; <span id="current-year"></span> {% trans "Sheger.xyz All Rights Reserved." %}
+                    &copy; <span id="current-year"></span> {% trans "Sheger.city All Rights Reserved." %}
                 </div>
             </div>
         </div>
@@ -293,3 +354,5 @@
     {% block js %}{% endblock %}
 </body>
 </html>
+
+{% django_browser_reload_script %}
