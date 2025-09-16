@@ -18,7 +18,7 @@ class MultipleFileField(forms.FileField):
         else:
             result = single_file_clean(data, initial)
         return result
-
+    
 class ClothingItemForm(forms.ModelForm):
     class Meta:
         model = ClothingItem
@@ -59,6 +59,7 @@ class ClothingCreateForm(forms.ModelForm):
         pass
 
     def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
         self.fields['category'].queryset = ClothingCategory.objects.all()
         self.fields['category'].empty_label = "Select a category"
@@ -70,14 +71,20 @@ class ClothingCreateForm(forms.ModelForm):
         self.fields['category'].help_text = "Choose the most appropriate category for your item"
         
     def save(self, commit=True):
-        instance = super().save(commit=commit)
-        if commit and self.cleaned_data.get('images'):
-            for i, img in enumerate(self.cleaned_data['images']):
-                ClothingImage.objects.create(
-                    clothing=instance,
-                    image=img,
-                    is_main=(i == 0)
-                )
+        instance = super().save(commit=False)
+        if self.user:
+            instance.created_by = self.user
+        if commit:
+            instance.save()
+            self.save_m2m()
+
+        if self.cleaned_data.get('images'):
+                for i, img in enumerate(self.cleaned_data['images']):
+                    ClothingImage.objects.create(
+                        clothing=instance,
+                        image=img,
+                        is_main=(i == 0)
+                    )
         return instance
 
     def clean(self):

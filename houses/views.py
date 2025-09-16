@@ -47,7 +47,7 @@ class HouseListView(ListView):
     model = House
     template_name = 'houses/house_list.html'
     context_object_name = 'houses'
-    paginate_by = 12
+    paginate_by = 7
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -55,7 +55,7 @@ class HouseListView(ListView):
         if category_slug:
             category = get_object_or_404(HouseCategory, slug=category_slug)
             queryset = queryset.filter(category__iexact=category.name)
-        return queryset.order_by('-date_added')
+        return queryset.order_by('-created_by')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -163,7 +163,7 @@ class HouseDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
             return redirect(self.success_url)
         
 def house_list(request):
-    houses = House.objects.all().order_by('-date_added')
+    houses = House.objects.all().order_by('-created_by')
     categories = HouseCategory.objects.all()
 
     cart = _get_cart(request)

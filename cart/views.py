@@ -4,8 +4,6 @@ from django.contrib.contenttypes.models import ContentType
 from .models import Cart, CartItem
 from django.apps import apps
 
-
-
 def _get_cart(request):
     if request.user.is_authenticated:
         cart, created = Cart.objects.get_or_create(user=request.user)

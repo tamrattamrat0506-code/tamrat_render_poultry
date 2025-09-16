@@ -3,13 +3,9 @@ from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
 import uuid
-
-# consultancy
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
-
-# chicken for sell
 from django.contrib.auth.models import User
 
 class Category(models.Model):
@@ -50,7 +46,7 @@ class Item(models.Model):
         blank=True, 
         related_name='items'
     )
-    is_featured = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
@@ -331,3 +327,19 @@ class ChickenSeller(models.Model):
         verbose_name = _("Chicken Seller")
         verbose_name_plural = _("Chicken Sellers")
         ordering = ['-created_at']
+
+class TrainingEnrollment(models.Model):
+    PROGRAM_CHOICES = [
+        ('meat_chickens', 'Meat Chickens'),
+        ('layer_chickens', 'Layer Chickens'),
+        ('dual_purpose_chickens', 'Dual Purpose Chickens'),
+    ]
+
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    program = models.CharField(max_length=50, choices=PROGRAM_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} - {self.program}"

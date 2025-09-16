@@ -2,6 +2,10 @@
 {% load i18n %}
 {% load static %}
 
+{% block title %}
+    {% trans " Product Details | Ethiopian Sheger Market place" %}
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'electronics/css/product_detail.css' %}">
 {% endblock %}
@@ -24,6 +28,11 @@
                     <img class="thumbnail" src="{{ image.image.url }}" alt="Product Image">
                 {% endfor %}
             </div>
+            
+<!-- electronic conversation Buttons -->
+<a href="{% url 'conversation:new' app_label='electronics' model_name='product' object_id=product.id %}" class="start-conversation-btn">
+    {% trans "Start Conversation" %}
+</a>
             <div class="interaction-buttons">
                     <button type="button" 
                             class="interaction-button like-button" 

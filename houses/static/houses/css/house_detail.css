@@ -18,7 +18,7 @@
 }
 
 /* Main Container */
-.house-detail-container {
+.product-detail-container {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 1rem;
@@ -88,7 +88,7 @@
 }
 
 /* Main Content Layout */
-.house-content {
+.product-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
@@ -173,11 +173,11 @@
 }
 
 /* House Information */
-.house-info {
+.product-info {
     padding: 1.5rem;
 }
 
-.house-info h1 {
+.product-info h1 {
     font-size: 2.2rem;
     margin-bottom: 1rem;
     color: var(--dark);
@@ -307,7 +307,7 @@
 
 /* Responsive Design */
 @media (max-width: 968px) {
-    .house-content {
+    .product-content {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
@@ -316,7 +316,7 @@
         height: 350px;
     }
     
-    .house-info h1 {
+    .product-info h1 {
         font-size: 1.8rem;
     }
     
@@ -326,7 +326,7 @@
 }
 
 @media (max-width: 768px) {
-    .house-detail-container {
+    .product-detail-container {
         margin: 1rem auto;
         padding: 0 0.5rem;
     }
@@ -356,7 +356,7 @@
 }
 
 @media (max-width: 480px) {
-    .house-info h1 {
+    .product-info h1 {
         font-size: 1.5rem;
     }
     
@@ -409,7 +409,7 @@
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-    .house-info h1,
+    .product-info h1,
     .price,
     .features strong {
         color: #000;

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (searchInput) {
         searchInput.addEventListener('input', function(e) {
             const searchTerm = e.target.value.toLowerCase();
-            const houseCards = document.querySelectorAll('.house-card');
+            const houseCards = document.querySelectorAll('.product-card');
             
             houseCards.forEach(card => {
                 const title = card.querySelector('.card-title').textContent.toLowerCase();
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (filterSelect) {
         filterSelect.addEventListener('change', function(e) {
             const filterValue = e.target.value.toLowerCase();
-            const houseCards = document.querySelectorAll('.house-card');
+            const houseCards = document.querySelectorAll('.product-card');
             
             if (!filterValue) {
                 houseCards.forEach(card => card.style.display = 'block');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Add data-category attribute to cards based on their category
-    const houseCards = document.querySelectorAll('.house-card');
+    const houseCards = document.querySelectorAll('.product-card');
     houseCards.forEach(card => {
         const categoryElement = card.querySelector('.card-category'); // You might need to add this element
         if (categoryElement) {

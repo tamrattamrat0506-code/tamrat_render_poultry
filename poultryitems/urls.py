@@ -29,9 +29,6 @@ urlpatterns = [
     path('api/items/<int:pk>/', ItemDetailAPIView.as_view(), name='api_item_detail'),
     path('<int:pk>/edit/', item_edit, name='item_edit'),
     path('<int:pk>/delete/', item_delete, name='item_delete'),
-    
-    # add to cart
-    path('<int:pk>/add-to-cart/', views.add_to_cart, name='add_to_cart'),
 
     # like and share
     path('<int:pk>/like/', views.like_item, name='item_like'),
@@ -55,5 +52,7 @@ urlpatterns = [
     #chicken
     path('veterinary-consultancy/', views.veterinary_consultancy, name='veterinary_consultancy'),
     path('book-consultation/', views.book_consultation, name='book_consultation'),#consultancy
-    path('poultry-trainings/', views.poultry_trainings, name='poultry_trainings'),#trainings
+    path('trainings/', views.poultry_trainings, name='poultry_trainings'),
+    path('trainees/', views.poultry_trainees, name='poultry_trainees'),
+    #trainings
 ]

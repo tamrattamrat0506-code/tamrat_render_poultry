@@ -2,25 +2,29 @@
 {% load static %}
 {% load i18n %}
 
+{% block title %}
+    {% trans " Vehicle List | Ethiopian Sheger Market place" %}
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'vehicles/css/vehicle_list.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
 
 {% block content %}
-<div class="vehicle-container">
+<div class="product-container">
 
     <div class="list-header">
-            <a href="{% url 'vehicles:vehicle_add' %}"  class="add-vehicle-btn">
+            <a href="{% url 'vehicles:vehicle_add' %}"  class="add-product-btn">
                 <i class="fas fa-plus"></i> Add New Vehicle
             </a>
     </div> 
     
-<main class="vehicle-listings">
-        <div class="vehicle-grid">
+<main class="product-listings">
+        <div class="product-grid">
  
             {% for vehicle in vehicles %}
-            <div class="vehicle-card" data-category="{{ vehicle.category.slug }}" data-price="{{ vehicle.price }}">
+            <div class="product-card" data-category="{{ vehicle.category.slug }}" data-price="{{ vehicle.price }}">
 
                 <div class="card-image">
             <img src="{{ vehicle.images.first.image.url }}" alt="{{ vehicle.make }} {{ vehicle.model }}" loading="lazy">
@@ -29,7 +33,7 @@
             </span>
     
             <div class="interaction-buttons">
-
+ 
                 <button type="button" 
                         class="interaction-button like-button"
                         aria-label="Like this vehicle"
@@ -51,19 +55,19 @@
          </div>
                 
                 <div class="card-content">
-                    <div class="vehicle-meta">
+                    <div class="product-meta">
 
-                        <span class="vehicle-year">{{ vehicle.year }}</span>
-                        <span class="vehicle-mileage"><i class="fas fa-tachometer-alt"></i> {{ vehicle.mileage|floatformat:"0" }} km</span>
+                        <span class="product-year">{{ vehicle.year }}</span>
+                        <span class="product-mileage"><i class="fas fa-tachometer-alt"></i> {{ vehicle.mileage|floatformat:"0" }} km</span>
                     </div>
 
                     <h3>{{ vehicle.make }} {{ vehicle.model }}</h3>
 
-                    <div class="vehicle-specs">
+                    <div class="product-specs">
                         <span><i class="fas fa-gas-pump"></i> {{ vehicle.get_fuel_type_display }}</span>
                         <span><i class="fas fa-cog"></i> {{ vehicle.engine_size|default:"N/A" }}</span>
                     </div>
-                    <div class="vehicle-price">
+                    <div class="product-price">
                         <span class="price">${{ vehicle.price|floatformat:"0" }}</span>
                     </div>
                     <a href="{% url 'vehicles:vehicle_detail' vehicle.slug %}" class="view-details">

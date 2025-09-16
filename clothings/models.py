@@ -1,9 +1,9 @@
-# closings/models.py
+# project/Clothings/models.py
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
 from django.core.validators import MinValueValidator
-
+from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
 from cart.models import CartItem
 
@@ -44,12 +44,9 @@ class ClothingItem(models.Model):
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
         on_delete=models.CASCADE,
-        related_name='clothing_items',
-        null=True,
-        blank=True
+        related_name='clothes'
     )
-
-
+    
     def increment_likes(self):
         self.like_count += 1
         self.save(update_fields=['like_count'])
@@ -62,6 +59,9 @@ class ClothingItem(models.Model):
     
     def __str__(self):
         return f"{self.name} ({self.category})"
+
+    def get_absolute_url(self):
+        return reverse("clothings:clothing_detail", kwargs={"slug": self.slug})
 
     @property
     def current_price(self):

@@ -1,215 +1,284 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // =============================================
-    // Hero Slider Functionality
-    // =============================================
+    // ===== SLIDER FUNCTIONALITY =====
     const slides = document.querySelectorAll('.slide');
     const dots = document.querySelectorAll('.dot');
     const prevBtn = document.querySelector('.prev-slide');
     const nextBtn = document.querySelector('.next-slide');
     let currentSlide = 0;
-    const slideCount = slides.length;
     let slideInterval;
 
-    // Initialize slider
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            const content = slide.querySelector('.slide-content');
-            if (content) {
-                content.style.animation = 'none';
-            }
-        });
-        
+    function showSlide(n) {
+        slides.forEach(slide => slide.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
         
-        slides[index].classList.add('active');
-        setTimeout(() => {
-            const content = slides[index].querySelector('.slide-content');
-            if (content) {
-                content.style.animation = 'fadeInUp 1s ease';
-            }
-        }, 10);
+        if (n >= slides.length) currentSlide = 0;
+        else if (n < 0) currentSlide = slides.length - 1;
+        else currentSlide = n;
         
-        dots[index].classList.add('active');
-        currentSlide = index;
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
     }
-    
+
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % slideCount;
-        showSlide(currentSlide);
+        showSlide(currentSlide + 1);
     }
-    
+
     function prevSlide() {
-        currentSlide = (currentSlide - 1 + slideCount) % slideCount;
-        showSlide(currentSlide);
+        showSlide(currentSlide - 1);
     }
-    
-    function startSlider() {
-        slideInterval = setInterval(nextSlide, 4500);
+
+    function startSlideShow() {
+        slideInterval = setInterval(nextSlide, 5000);
     }
-    
-    function pauseSlider() {
+
+    function stopSlideShow() {
         clearInterval(slideInterval);
     }
-    
+
+    if (nextBtn && prevBtn) {
+        nextBtn.addEventListener('click', () => {
+            stopSlideShow();
+            nextSlide();
+            startSlideShow();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            stopSlideShow();
+            prevSlide();
+            startSlideShow();
+        });
+    }
+
+    if (dots.length > 0) {
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                stopSlideShow();
+                showSlide(index);
+                startSlideShow();
+            });
+        });
+    }
+
     const sliderContainer = document.querySelector('.slider-container');
     if (sliderContainer) {
-        sliderContainer.addEventListener('mouseenter', pauseSlider);
-        sliderContainer.addEventListener('mouseleave', startSlider);
-        sliderContainer.addEventListener('focusin', pauseSlider);
-        sliderContainer.addEventListener('focusout', startSlider);
+        sliderContainer.addEventListener('mouseenter', stopSlideShow);
+        sliderContainer.addEventListener('mouseleave', startSlideShow);
     }
+
+    startSlideShow();
+
+    // ===== CATEGORY CARDS ANIMATION =====
+    const categoryCards = document.querySelectorAll('.category-card');
     
-    if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-            pauseSlider();
-            nextSlide();
-            startSlider();
+    function checkScroll() {
+        categoryCards.forEach(card => {
+            const cardPosition = card.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if (cardPosition < screenPosition) {
+                card.style.opacity = 1;
+                card.style.transform = 'translateY(0)';
+            }
+        });
+
+        // Also check for product cards animation
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach(card => {
+            const cardPosition = card.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.2;
+            
+            if (cardPosition < screenPosition) {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }
         });
     }
     
-    if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-            pauseSlider();
-            prevSlide();
-            startSlider();
+    if (categoryCards.length > 0) {
+        categoryCards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
         });
     }
     
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            pauseSlider();
-            showSlide(index);
-            startSlider();
+    window.addEventListener('load', checkScroll);
+    window.addEventListener('scroll', checkScroll);
+    
+    checkScroll();
+
+    // ===== PRODUCT CARDS HOVER EFFECTS =====
+    const productCards = document.querySelectorAll('.product-card');
+    
+    productCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-5px)';
+            card.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
         });
     });
+
+    // ===== LOAD MORE FUNCTIONALITY =====
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const moreProducts = document.getElementById('more-products');
     
-    // Touch support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    if (sliderContainer) {
-        sliderContainer.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            pauseSlider();
-        }, {passive: true});
+    if (loadMoreBtn && moreProducts) {
+        loadMoreBtn.addEventListener('click', function() {
+            // Show the hidden products with smooth animation
+            moreProducts.style.display = 'grid';
+            
+            // Trigger reflow for animation
+            void moreProducts.offsetWidth;
+            
+            // Add animation class
+            moreProducts.style.animation = 'fadeIn 0.6s ease-in forwards';
+            
+            // Hide the load more button with smooth transition
+            loadMoreBtn.style.opacity = '0';
+            loadMoreBtn.style.transform = 'translateY(20px)';
+            loadMoreBtn.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+            
+            setTimeout(() => {
+                loadMoreBtn.style.display = 'none';
+                
+                // Animate in the new product cards
+                const newProductCards = moreProducts.querySelectorAll('.product-card');
+                newProductCards.forEach((card, index) => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 100);
+                });
+                
+                // Optional: Scroll to the newly loaded products
+                moreProducts.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 300);
+        });
+
+        // Add hover effects to load more button
+        loadMoreBtn.addEventListener('mouseenter', () => {
+            loadMoreBtn.style.transform = 'translateY(-2px)';
+        });
         
-        sliderContainer.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-            startSlider();
-        }, {passive: true});
-    }
-    
-    function handleSwipe() {
-        const threshold = 50;
-        if (touchEndX < touchStartX - threshold) {
-            nextSlide();
-        } else if (touchEndX > touchStartX + threshold) {
-            prevSlide();
-        }
+        loadMoreBtn.addEventListener('mouseleave', () => {
+            loadMoreBtn.style.transform = 'translateY(0)';
+        });
     }
 
-    // =============================================
-    // Featured Products Functionality
-    // =============================================
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const productsContainer = document.querySelector('.products-container');
-
-    function renderProducts(category = 'all') {
-        if (!productsContainer || !window.productsData) {
-            console.error('Products container or data not found');
-            return;
-        }
-        
-        productsContainer.innerHTML = '';
-        
-        let filteredProducts = [];
-        
-        if (category === 'all') {
-            // Combine all products from all categories
-            for (const cat in productsData) {
-                if (productsData[cat] && productsData[cat].length > 0) {
-                    filteredProducts = filteredProducts.concat(productsData[cat]);
+    // ===== INTERSECTION OBSERVER FOR LAZY ANIMATIONS =====
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                if (entry.target.classList.contains('product-card')) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             }
-        } else if (productsData[category]) {
-            filteredProducts = productsData[category];
-        }
-        
-        if (filteredProducts.length === 0) {
-            productsContainer.innerHTML = `
-                <div class="no-products-message">
-                    <i class="fas fa-box-open"></i>
-                    <p>{% trans "No products found in this category" %}</p>
-                </div>
-            `;
-            return;
-        }
-        
-        filteredProducts.forEach(product => {
-            const productCard = document.createElement('a');
-            productCard.className = 'product-card';
-            productCard.href = product.url;
-            productCard.innerHTML = `
-                <div class="product-image">
-                    <img src="${product.image}" alt="${product.title}" loading="lazy">
-                    <div class="product-overlay"></div>
-                </div>
-                <div class="product-info">
-                    <h3>${product.title}</h3>
-                    <p class="price">${product.price}</p>
-                </div>
-            `;
-            productsContainer.appendChild(productCard);
         });
-    }
-
-    // Initialize tab functionality
-    if (tabButtons && tabButtons.length > 0) {
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-                renderProducts(this.dataset.category);
-            });
-        });
-    }
-
-    // =============================================
-    // General Button Handlers
-    // =============================================
-    document.querySelectorAll('a.btn-primary').forEach(btn => {
-        if (btn.getAttribute('href') === '#') {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                console.log('Button clicked:', btn.textContent.trim());
-            });
-        }
+    }, observerOptions);
+    
+    // Observe all product cards for animation
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(card);
     });
 
-    // =============================================
-    // Initialize Everything
-    // =============================================
-    showSlide(0);
-    startSlider();
-    renderProducts();
+    // ===== LIKE AND SHARE BUTTON FUNCTIONALITY =====
+    document.querySelectorAll('.interaction-button').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const itemId = this.getAttribute('data-item-id');
+            const action = this.getAttribute('data-action');
+            
+            // Add temporary visual feedback
+            this.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 150);
+            
+            // Here you would typically make an AJAX call to your backend
+            console.log(`${action} clicked for item ${itemId}`);
+        });
+    });
 
-    // Responsive adjustments
+    // ===== RESPONSIVE BEHAVIOR =====
     function handleResize() {
-        // Adjust slider height if needed
-        const heroSlider = document.querySelector('.hero-slider');
-        if (heroSlider) {
-            heroSlider.style.height = `${window.innerWidth > 768 ? '70vh' : '50vh'}`;
+        // Adjust animations based on screen size
+        if (window.innerWidth < 768) {
+            // Mobile-specific adjustments
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+            });
         }
     }
 
     window.addEventListener('resize', handleResize);
     handleResize();
+
+    // ===== TOUCH DEVICE SUPPORT =====
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    if (sliderContainer) {
+        sliderContainer.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        sliderContainer.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+    }
+
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) {
+            // Swipe left - next slide
+            stopSlideShow();
+            nextSlide();
+            startSlideShow();
+        }
+        
+        if (touchEndX > touchStartX + 50) {
+            // Swipe right - previous slide
+            stopSlideShow();
+            prevSlide();
+            startSlideShow();
+        }
+    }
 });
 
+// ===== UTILITY FUNCTIONS =====
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
 
-
-
-
-
+// Export functions for potential reuse
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { debounce };
+}

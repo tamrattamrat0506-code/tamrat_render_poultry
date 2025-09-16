@@ -51,8 +51,8 @@ class House(models.Model):
     bathrooms = models.PositiveIntegerField()
     area = models.PositiveIntegerField(help_text="Area in square meters")
     description = models.TextField()
-    is_featured = models.BooleanField(default=False)
-    date_added = models.DateTimeField(auto_now_add=True)
+    is_featured = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     slug = models.SlugField(unique=True)
     created_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
@@ -61,7 +61,7 @@ class House(models.Model):
     )
     like_count = models.PositiveIntegerField(default=0)
     share_count = models.PositiveIntegerField(default=0)
-
+    
     def increment_likes(self):
         self.like_count += 1
         self.save()
@@ -72,7 +72,7 @@ class House(models.Model):
         return self.share_count
     
     class Meta:
-        ordering = ['-date_added']
+        ordering = ['-created_at']
         verbose_name_plural = "Houses"
 
     def save(self, *args, **kwargs):

@@ -1,6 +1,7 @@
 <!-- project\houses\templates\houses\house_form.html -->
 {% extends "base/base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'houses/css/house_form.css' %}">
@@ -8,11 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 {% endblock %}
 
+{% block title %}
+    {% trans " House Form | Ethiopian Sheger Market place" %}
+{% endblock %}
+
 {% block content %}
 <div class="form-container">
   <h2 class="form-title">Add / Edit House</h2>
   
-  <form method="POST" enctype="multipart/form-data" class="house-form" id="houseForm">
+  <form method="POST" enctype="multipart/form-data" class="product-form" id="houseForm">
     {% csrf_token %}
     {{ form.as_p }}
 

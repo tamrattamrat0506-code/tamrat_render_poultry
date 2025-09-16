@@ -1,4 +1,4 @@
-# closings/views.py
+# project/clothings/views.py
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from .models import ClothingCategory, ClothingItem
@@ -17,7 +17,8 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.views.decorators.csrf import csrf_protect
 from .forms import ClothingItemForm
-
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import ClothingItemForm as ClothingFormForm
 @require_POST
 @login_required
 def like_clothing(request, clothing_id):
@@ -48,7 +49,7 @@ class ClothingListView(ListView):
     paginate_by = 12
     
     def get_queryset(self):
-        qs = ClothingItem.objects.filter(stock_quantity__gt=0).order_by('-is_featured', '-created_at')
+        qs = ClothingItem.objects.filter(stock_quantity__gt=0).order_by('-created_at')
         return qs
 
     def get_context_data(self, **kwargs):
@@ -79,7 +80,7 @@ class CategoryView(ListView):
         return ClothingItem.objects.filter(
             category__slug=self.kwargs['slug'],
             stock_quantity__gt=0
-        ).order_by('-is_featured', '-created_at')
+        ).order_by('-created_at')
 
 class GenderView(ListView):
     model = ClothingItem
@@ -92,7 +93,7 @@ class GenderView(ListView):
         return ClothingItem.objects.filter(
             category__gender=gender,
             stock_quantity__gt=0
-        ).order_by('-is_featured', '-created_at')
+        ).order_by('-created_at')
 
 class ClothingSearchView(ListView):
     model = ClothingItem
@@ -107,7 +108,7 @@ class ClothingSearchView(ListView):
             Q(description__icontains=query) |
             Q(brand__icontains=query),
             stock_quantity__gt=0
-        ).order_by('-is_featured', '-created_at')
+        ).order_by('-created_at')
 
 class ClothingDetailView(DetailView):
     model = ClothingItem
@@ -148,6 +149,13 @@ class ClothingCreateView(CreateView):
     model = ClothingItem
     form_class = ClothingCreateForm
     template_name = 'clothings/clothing_create.html'
+    login_url = 'users:login'
+    
+    def get_form_kwargs(self):
+        """Pass the user to the form"""
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
     
     def form_valid(self, form):
         form.instance.slug = generate_unique_slug(form.instance.name)
@@ -160,10 +168,11 @@ class ClothingCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('clothings:clothing_detail', kwargs={'slug': self.object.slug})
 
-class ClothingUpdateView(UpdateView):
+class ClothingUpdateView(LoginRequiredMixin, UpdateView):
     model = ClothingItem
-    form_class = ClothingItemForm 
+    form_class = ClothingFormForm 
     template_name = 'clothings/clothing_create.html'
+    login_url = 'users:login'
     
     def get_success_url(self):
         return reverse_lazy('clothings:clothing_detail', kwargs={'slug': self.object.slug})

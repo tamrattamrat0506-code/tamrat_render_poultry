@@ -1,4 +1,17 @@
-<!-- In egg_seller_detail.html -->
+{% extends 'base/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans " Egg Seller Details | Ethiopian Sheger Market place" %}
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'poultryitems/css/egg_seller_detail.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+{% endblock %}
+
+{% block content %}
 {% if user.is_staff %}
 <div class="staff-controls">
     <h3>{% trans "Staff Controls" %}</h3>
@@ -12,3 +25,8 @@
     </div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'poultryitems/js/egg_seller_detail.js' %}"></script>
+{% endblock %}

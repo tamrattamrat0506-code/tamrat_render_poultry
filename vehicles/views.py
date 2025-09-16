@@ -1,4 +1,4 @@
-# vehicles/views.py
+# project/vehicles/views.py
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -47,7 +47,7 @@ class VehicleListView(ListView):
     template_name = 'vehicles/vehicle_list.html'
     context_object_name = 'vehicles'
     paginate_by = 12
-
+ 
     def get_queryset(self):
         return Vehicle.objects.filter(is_featured=True).order_by('-created_at')
 

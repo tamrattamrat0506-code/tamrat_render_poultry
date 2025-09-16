@@ -36,7 +36,7 @@ def share_product(request, product_id):
     })
 
 def product_list(request):
-    products = Product.objects.select_related('category', 'seller').all()
+    products = Product.objects.select_related('category', 'seller').all().order_by('-created_at')
 
     cart = _get_cart(request)
     product_ct = ContentType.objects.get_for_model(Product)

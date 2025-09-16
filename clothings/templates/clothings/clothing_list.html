@@ -2,25 +2,29 @@
 {% load static %}
 {% load i18n %}
 
+{% block title %}
+    {% trans "Clothing List | Ethiopian Sheger Market place" %}
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'clothings/css/clothing_list.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
 
 {% block content %}
-<div class="clothing-container">
+<div class="product-container">
 
     <div class="list-header">
-            <a href="{% url 'clothings:clothing_create' %}"  class="add-clothing-btn">
+            <a href="{% url 'clothings:clothing_create' %}"  class="add-product-btn">
                 <i class="fas fa-plus"></i> {% trans "Add New Clothing Item" %}
             </a>
     </div> 
     
-<main class="clothing-listings">
-        <div class="clothing-grid">
+<main class="product-listings">
+        <div class="product-grid">
  
             {% for item in clothes %}
-            <div class="clothing-card" data-category="{{ item.category.slug }}" data-price="{{ item.current_price }}">
+            <div class="product-card" data-category="{{ item.category.slug }}" data-price="{{ item.current_price }}">
 
                 <div class="card-image">
             <img src="{{ item.images.first.image.url }}" alt="{{ item.name }}" loading="lazy">
@@ -51,23 +55,23 @@
          </div>
                 
                 <div class="card-content">
-                    <div class="clothing-meta">
-                        <span class="clothing-brand">{{ item.category.name|default:"Poultry" }}</span>
+                    <div class="product-meta">
+                        <span class="product-brand">{{ item.category.name|default:"Poultry" }}</span>
                         {{ item.created_at|timesince }} ago
                     </div>
 
-                    <div class="clothing-specs">
+                    <div class="product-specs">
 
                         <h3>{{ item.name }}</h3>
                         <span><i class="fas fa-tag"></i> {{ item.category.name }}</span>
                         
                     </div>
                     
-                    <div class="clothing-meta">
+                    <div class="product-meta">
                     <p>{{ item.description|truncatewords:15 }}</p>
                     </div>
 
-                    <div class="clothing-price">
+                    <div class="product-price">
                         {% if item.is_on_sale %}
                             <span class="original-price">${{ item.price|floatformat:"0" }}</span>
                             <span class="price">${{ item.discount_price|floatformat:"0" }}</span>

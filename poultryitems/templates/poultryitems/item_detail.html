@@ -3,6 +3,10 @@
 {% load static %}
 {% load i18n %}
 
+{% block title %}
+    {% trans " Poultry Item Details | Ethiopian Sheger Market place" %}
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'poultryitems/css/item_detail.css' %}" preload>
 {% endblock %}
@@ -32,14 +36,8 @@
             </a>
         </div>
         
-        {% if request.user.is_authenticated and request.user != item.created_by %}
-        <div class="seller-actions">
-            <a href="{% url 'conversation:new' item.id %}" class="button contact-button" aria-label="Contact seller">
-                <i class="fas fa-envelope" aria-hidden="true"></i> 
-                <span>{% trans "Contact" %}</span>
-            </a>
-        </div>
-        {% endif %}
+        <a href="{% url 'conversation:new' app_label='poultryitems' model_name='item' object_id=item.id %}" class="start-conversation-btn"></a>
+        
     </section>
 
     <!-- Product Main Content -->
@@ -77,21 +75,17 @@
                     <span class="interaction-count" id="share-count" aria-live="polite">{{ item.share_count }}</span>
                 </button>
 
-                <button type="button" 
-                        class="interaction-button cart-button"
-                        aria-label="Add to cart"
-                        data-add-url="{% url 'poultryitems:add_to_cart' item.id %}"
-                        id="add-to-cart-btn">
-                    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
-                    <span>{% trans "Add to Cart" %}</span>
-                </button>
+                <a href="{% url 'cart:add_to_cart' 'poultryitems' 'item' item.id %}" class="add-to-cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    {% trans "Add to Cart" %}
+                </a>
             </div>
             
             <div class="product-price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                 <meta itemprop="priceCurrency" content="ETB">
                 <span itemprop="price" content="{{ item.price }}">ETB {{ item.price }}</span>
             </div>
-        </figure>
+        </figure> 
         
         <div class="product-meta">
             <p class="meta-item">

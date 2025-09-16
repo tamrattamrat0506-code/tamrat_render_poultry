@@ -2,17 +2,20 @@
 {% load static %}
 {% load i18n %}
 
+{% block title %}
+{% trans " Vehicle Vehicle Detail | Ethiopian Sheger Market place" %}
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'vehicles/css/vehicle_detail.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery-bundle.min.css">
 {% endblock %}
-
+ 
 {% block content %}
-
-<div class="vehicle-detail-container">
+<div class="product-detail-container">
     <!-- Main Content -->
-    <div class="vehicle-content">
+    <div class="product-content">
         <div class="image-gallery">
             <div class="main-image-container">
                 <img id="mainVehicleImage" src="{{ vehicle.images.first.image.url }}" alt="Main Image" class="main-image" />
@@ -25,6 +28,10 @@
                     <img src="{{ image.image.url }}" alt="Thumbnail" class="thumbnail" onclick="updateMainImage(this)">
                 {% endfor %}
             </div>
+
+            <!-- conversation Buttons -->
+<a href="{% url 'conversation:new' app_label='vehicles' model_name='vehicle' object_id=vehicle.id %}" class="start-conversation-btn">{% trans "Start Conversation" %}</a>
+
             <div class="interaction-buttons">
                     <button type="button" class="interaction-button like-btn" onclick="likeVehicle('{{ vehicle.id }}')">
                         <i class="fas fa-thumbs-up"></i>
@@ -41,7 +48,7 @@
         </div>
 
         <!-- Vehicle Information -->
-        <div class="vehicle-info">
+        <div class="product-info">
             <h1>{{ vehicle.make }} {{ vehicle.model }} ({{ vehicle.year }})</h1>
             
             <div class="price-section">

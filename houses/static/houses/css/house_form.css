@@ -24,20 +24,20 @@ body {
 }
 
 /* Form Fields */
-.house-form p {
+.product-form p {
   margin-bottom: 15px;
 }
 
-.house-form label {
+.product-form label {
   display: block;
   font-weight: 600;
   margin-bottom: 6px;
   color: #444;
 }
 
-.house-form input,
-.house-form select,
-.house-form textarea {
+.product-form input,
+.product-form select,
+.product-form textarea {
   width: 100%;
   padding: 10px 12px;
   font-size: 1rem;
@@ -48,9 +48,9 @@ body {
   transition: border-color 0.3s ease;
 }
 
-.house-form input:focus,
-.house-form select:focus,
-.house-form textarea:focus {
+.product-form input:focus,
+.product-form select:focus,
+.product-form textarea:focus {
   border-color: #ffa31a;
 }
 

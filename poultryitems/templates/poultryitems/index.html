@@ -3,11 +3,16 @@
 {% load static %}
 {% load i18n %}
 
+{% block title %}
+    {% trans " Poultry | Ethiopian Sheger Market place" %}
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'poultryitems/css/index.css' %}">
 {% endblock %}
  
 {% block content %}
+
 <!-- Hero Section with Video Background -->
 <section class="hero">
     <video autoplay muted loop class="hero__video">

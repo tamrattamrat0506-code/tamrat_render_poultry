@@ -2,13 +2,17 @@
 {% load static %}
 {% load i18n %}
 
+{% block title %}
+    {% trans " Electronics Products | Ethiopian Sheger Market place" %}
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'electronics/css/product_list.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 {% endblock %}
 
 {% block content %}
-<div class="electronics-container">
+<div class="product-container">
 
     <div class="list-header">
             <a href="{% url 'electronics:product_create' %}"  class="add-product-btn">
@@ -16,11 +20,11 @@
             </a>
     </div> 
     
-<main class="electronics-listings">
-        <div class="electronics-grid">
+<main class="product-listings">
+        <div class="product-grid">
  
             {% for product in products %}
-            <div class="electronics-card" data-category="{{ product.category.slug }}" data-price="{{ product.price }}">
+            <div class="product-card" data-category="{{ product.category.slug }}" data-price="{{ product.price }}">
 
                 <div class="card-image">
             <img src="{{ product.images.first.image.url }}" alt="{{ product.images.first.alt_text|default:product.name }}" loading="lazy">
@@ -51,8 +55,8 @@
          </div>
                 
                 <div class="card-content">
-                    <div class="electronics-meta">
-                        <span class="electronics-condition"><i class="fas fa-certificate"></i> {{ product.get_condition_display }}</span>
+                    <div class="product-meta">
+                        <span class="product-condition"><i class="fas fa-certificate"></i> {{ product.get_condition_display }}</span>
                         <div class="clothing-meta">
                         {{ product.created_at|timesince }} ago
                     </div>
@@ -60,11 +64,11 @@
 
                     <h3>{{ product.name }}</h3>
 
-                    <div class="electronics-specs">
+                    <div class="product-specs">
                         <span><i class="fas fa-microchip"></i> {{ product.category.name }}</span>
                         <span><i class="fas fa-bolt"></i> {{ product.power_rating|default:"N/A" }}</span>
                     </div>
-                    <div class="electronics-price">
+                    <div class="product-price">
                         <span class="price">${{ product.price|floatformat:"0" }}</span>
                     </div>
                     <a href="{% url 'electronics:product_detail' product.pk %}" class="view-details">

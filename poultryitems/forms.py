@@ -4,9 +4,9 @@ from .models import Item, SubImage
 from django.utils.translation import gettext_lazy as _
 from .models import ConsultationBooking, Consultant, ConsultationService
 from .models import EggSeller, EggOrder
-
-# chicken for sell
 from .models import ChickenSeller
+from django import forms
+from .models import TrainingEnrollment
 
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
@@ -182,3 +182,15 @@ class ChickenSellerForm(forms.ModelForm):
             raise forms.ValidationError(_("Minimum price cannot be greater than maximum price."))
         
         return cleaned_data
+
+
+class TrainingEnrollmentForm(forms.ModelForm):
+    class Meta:
+        model = TrainingEnrollment
+        fields = ['name', 'email', 'phone', 'program']
+        widgets = {
+            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your name'}),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email'}),
+            'phone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your phone number'}),
+            'program': forms.Select(attrs={'class': 'form-control'}),
+        }

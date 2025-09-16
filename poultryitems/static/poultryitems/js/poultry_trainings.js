@@ -1,38 +1,5 @@
 // poultryitems/static/poultryitems/js/poultry_trainings.js
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Form validation
-    const enrollForm = document.querySelector('.enroll-form form');
-    if (enrollForm) {
-        enrollForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Basic validation
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const program = document.getElementById('program').value;
-            
-            if (!name || !email || !phone || !program) {
-                showNotification('Please fill in all fields', 'error');
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                showNotification('Please enter a valid email address', 'error');
-                return;
-            }
-            
-            if (!isValidPhone(phone)) {
-                showNotification('Please enter a valid phone number', 'error');
-                return;
-            }
-            
-            // If validation passes, show success message
-            showNotification('Registration successful! We will contact you soon.', 'success');
-            enrollForm.reset();
-        });
-    }
     
     // Scroll animations
     const fadeElements = document.querySelectorAll('.fade-in');

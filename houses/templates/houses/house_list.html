@@ -1,6 +1,11 @@
 <!-- houses/house_list.html -->
 {% extends "base/base.html" %}
 {% load static %}
+{% load i18n %}
+
+{% block title %}
+    {% trans " Houses for Sale/Rent | Ethiopian Sheger Market place" %}
+{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'houses/css/house_list.css' %}">
@@ -10,19 +15,19 @@
 {% endblock %}
 
 {% block content %}
-<div class="house-list-container">
+<div class="product-list-container">
     <div class="list-header">
         
         <div class="list-controls">
-            <a href="{% url 'houses:house_create' %}" class="add-house-btn">
+            <a href="{% url 'houses:house_create' %}" class="add-product-btn">
                 <i class="fas fa-plus"></i> Add New Property
             </a>
         </div>
     </div>
 
-    <div class="house-grid">
+    <div class="product-grid">
         {% for house in houses %}
-        <div class="house-card {% if house.is_featured %}featured{% endif %}">
+        <div class="product-card {% if house.is_featured %}featured{% endif %}">
             <div class="card-image">
                 {% if house.featured_image %}
                 <img src="{{ house.featured_image.image.url }}" alt="{{ house.title }}">
@@ -149,12 +154,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         showMessage(data.message, 'success');
                         
                         // Remove the house card from the DOM
-                        const houseCard = document.querySelector(`.house-card[data-house-id="${houseId}"]`);
+                        const houseCard = document.querySelector(`.product-card[data-house-id="${houseId}"]`);
                         if (houseCard) {
                             houseCard.remove();
                             
                             // Check if there are no more houses
-                            if (document.querySelectorAll('.house-card').length === 0) {
+                            if (document.querySelectorAll('.product-card').length === 0) {
                                 window.location.reload();
                             }
                         }

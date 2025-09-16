@@ -2,13 +2,17 @@
 {% load static %}
 {% load i18n %}
 
+{% block title %}
+    {% trans "Clothing Details | Ethiopian Sheger Market place" %}
+{% endblock %}
+
 {% block css %}
 <link rel="stylesheet" href="{% static 'clothings/css/clothing_detail.css' %}">
 {% endblock %}
 
 {% block content %}
-<div class="clothing-detail-container">
-    <div class="clothing-gallery">
+<div class="product-detail-container">
+    <div class="product-gallery">
         <img id="mainClothingImage" src="{{ clothing.images.first.image.url }}" alt="{{ clothing.name }}" class="main-image">
         <span class="carted-badge {% if clothing.is_carted %}carted{% endif %}">
             <i class="fas fa-shopping-cart"></i>
@@ -19,6 +23,14 @@
             <img src="{{ image.image.url }}" alt="{{ clothing.name }}" class="thumbnail" onclick="updateMainImage(this)">
             {% endfor %}
         </div>
+<!-- Try these one by one -->
+<a href="{% url 'conversation:new' app_label='clothings' model_name='clothingitem' object_id=clothing.id %}">
+    contact seller
+</a>
+
+
+
+
         <div class="interaction-buttons">
             <button type="button" class="interaction-button like-button" data-item-id="{{ clothing.id }}">
                 <i class="fas fa-thumbs-up"></i> <span class="interaction-count">{{ clothing.like_count }}</span>
@@ -28,8 +40,27 @@
             </button>
         </div>
     </div>
+fraol
+    {% if clothing.created_by %}
+<div class="seller-section">
+    <a href="{% url 'users:seller_profile' clothing.created_by.id %}" class="seller-link">
+        {% if clothing.created_by.profile.profile_picture %}
+        <img src="{{ clothing.created_by.profile.profile_picture.url }}" 
+             alt="{{ clothing.created_by.username }} profile picture" 
+             class="seller-avatar" width="60" height="60" loading="lazy">
+        {% endif %}
+    </a>
+    <div class="seller-info">
+        <h2 id="seller-heading" class="seller-name">
+            {{ clothing.created_by.username|default:clothing.created_by.phone_number }}
+        </h2>
+        <span class="seller-label">{% trans "Seller" %}</span>
+    </div>
+</div>
+{% endif %}
+fraol
 
-    <div class="clothing-info">
+    <div class="product-info">
         <h1>{{ clothing.name }}</h1>
         <div class="price-section">
             {% if clothing.is_on_sale %}
