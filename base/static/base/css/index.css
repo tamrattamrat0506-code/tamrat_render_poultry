@@ -1536,23 +1536,6 @@ body {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Load More Button Styles */
 .load-more-container {
     text-align: center;
@@ -1581,7 +1564,7 @@ body {
 .load-more-btn:active {
     transform: translateY(0);
 }
-
+ 
 .product-count {
     font-size: 0.9rem;
     opacity: 0.8;
